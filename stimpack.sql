@@ -6,7 +6,7 @@ CREATE TABLE student
 (
 student_id int NOT NULL AUTO_INCREMENT,
 username varchar(30),
-password varchar(30),
+password varchar(32),
 firstname varchar(30),
 lastname varchar(30),
 phone int UNSIGNED,
@@ -19,7 +19,7 @@ CREATE TABLE teacher
 (
 teacher_id int NOT NULL AUTO_INCREMENT,
 username varchar(30),
-password varchar(30),
+password varchar(32),
 firstname varchar(30),
 lastname varchar(30),
 phone int UNSIGNED,
