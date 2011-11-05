@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS stimpack;
 CREATE DATABASE IF NOT EXISTS stimpack;
 
 USE stimpack;
@@ -46,3 +47,5 @@ student_id int NOT NULL,
 FOREIGN KEY(class_id) REFERENCES class(class_id),
 FOREIGN KEY(student_id) REFERENCES student(student_id)
 );
+
+GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,ALTER ON stimpack.* TO 'stimpack'@'localhost' IDENTIFIED BY 'stimpackuser' ;
