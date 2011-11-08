@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+        <f:view>
+            <ui:composition template="./WEB-INF/templates/main.xhtml">
+
+                <ui:define name="title">
+                    Home
+                </ui:define>
+
+                <ui:define name="menu">
+
+                </ui:define>
+
+                <ui:define name="content">
+                    <h:form rendered="#{!userManager.loggedIn()}">
+                        <div class="login">
+                            <h:panelGrid columns="2" styleClass="login-table">
+                                <h:outputText value="Username:" />
+                                <h:inputText id="username" value="#{login.username}" />
+                                <h:outputText value="Password:" />
+                                <h:inputSecret id="password" value="#{login.password}" />
+                                <h:outputText value="Method:" />
+                                <h:selectOneMenu id="method" value="#{login.method}">
+                                    <f:selectItem itemValue="student" itemLabel="Student" />
+                                    <f:selectItem itemValue="teacher" itemLabel="Teacher" />
+                                    <f:selectItem itemValue="administrator" itemLabel="Administrator" />
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+                            <br /><h:commandButton action="#{login.login()}" value="Submit" /><br />
+                        </div>
+                    </h:form>
+                    <h:form rendered="#{userManager.loggedIn()}">
+                        <p>You are logged in as #{userManager.student.firstname}.</p>
+                        <h:commandLink value="Log out" action="#{userManager.logout()}" />
+                    </h:form>
+                </ui:define>
+            </ui:composition>
+        </f:view>
+    </body>
+</html>

@@ -29,7 +29,7 @@ age tinyint UNSIGNED,
 PRIMARY KEY(teacher_id)
 );
 
-CREATE TABLE class
+CREATE TABLE subject
 (
 class_id int NOT NULL AUTO_INCREMENT,
 teacher_id int,
@@ -40,11 +40,11 @@ PRIMARY KEY(class_id),
 FOREIGN KEY(teacher_id) REFERENCES teacher(teacher_id)
 );
 
-CREATE TABLE student_class
+CREATE TABLE student_subject
 (
 class_id int NOT NULL,
 student_id int NOT NULL,
-FOREIGN KEY(class_id) REFERENCES class(class_id),
+FOREIGN KEY(class_id) REFERENCES subject(class_id),
 FOREIGN KEY(student_id) REFERENCES student(student_id)
 );
 

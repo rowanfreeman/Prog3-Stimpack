@@ -1,0 +1,99 @@
+
+#top {
+    position: relative;
+    background-color: #036fab;
+    color: white;
+    padding: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    border: 0.05em solid black;
+    width: 70em;
+}
+
+#menu {
+    position: relative;
+    padding: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70em;
+}
+
+#bottom {
+    position: relative;
+    padding: 1em;
+    margin: 10px 0px 0px 0px;
+    text-align: center;
+}
+
+#left {
+    float: left;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+#right {
+    float: right;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+.center_content {
+    position: relative;
+    background-color: #dddddd;
+    padding: 1em;
+    color: black;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    border: 0.05em solid black;
+    width: 70em;
+}
+
+.left_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin-left: 170px;
+}
+
+.right_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin: 0px 170px 0px 170px;
+}
+
+#top a:link, #top a:visited {
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+    color: black;
+    font-weight : bold;
+    text-decoration : underline;
+}
+
+.login {
+    padding: 0.5em;
+    border: 0.05em solid black;
+    width: 30em;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ece3a5;
+    overflow: hidden;
+    text-align: center;
+}
+
+.login-table {
+    width: 100%;
+}
+
+.login-table input {
+    width: 10em;
+}
+
+.login-table select {
+    width: 10em;
+}
