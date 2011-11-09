@@ -4,6 +4,7 @@
  */
 package beans;
 
+import ejb.Administrator;
 import ejb.Student;
 import ejb.Teacher;
 import javax.faces.bean.ManagedBean;
@@ -19,6 +20,7 @@ public class UserManager {
 
     private Student student;
     private Teacher teacher;
+    private Administrator administrator;
 
     public UserManager() {
     }
@@ -39,8 +41,16 @@ public class UserManager {
         this.teacher = teacher;
     }
 
+    public Administrator getAdministrator() {
+        return administrator;
+    }
+
+    public void setAdministrator(Administrator administrator) {
+        this.administrator = administrator;
+    }
+
     public boolean loggedIn() {
-        if (student != null || teacher != null) {
+        if (getUser() != null) {
             return true;
         }
         return false;
@@ -49,6 +59,7 @@ public class UserManager {
     public void logout() {
         student = null;
         teacher = null;
+        administrator = null;
     }
     
     public String getUsername() {
@@ -56,6 +67,8 @@ public class UserManager {
             return student.getUsername();
         else if (isTeacher())
             return teacher.getUsername();
+        else if (isAdministrator())
+            return administrator.getUsername();
         return null;
     }
     
@@ -69,6 +82,8 @@ public class UserManager {
             return student;
         if (teacher != null)
             return teacher;
+        if (administrator != null)
+            return administrator;
         return null;
     }
     
@@ -80,6 +95,12 @@ public class UserManager {
     
     public boolean isTeacher() {
         if (getUser() instanceof Teacher)
+            return true;
+        return false;
+    }
+    
+    public boolean isAdministrator() {
+        if (getUser() instanceof Administrator)
             return true;
         return false;
     }

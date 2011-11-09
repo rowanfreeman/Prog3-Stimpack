@@ -31,6 +31,7 @@
             </ul>
                 Logged in as <b>#{userManager.username}</b> (#{userManager.type})
             </c:if>
+            <h:outputText value="You are not logged in" rendered="#{!userManager.loggedIn()}" />
         </div>
         
         <div id="trail" class="trail">
