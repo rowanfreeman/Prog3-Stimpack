@@ -56,10 +56,11 @@ public class UserManager {
         return false;
     }
 
-    public void logout() {
+    public String logout() {
         student = null;
         teacher = null;
         administrator = null;
+        return "index";
     }
     
     public String getUsername() {

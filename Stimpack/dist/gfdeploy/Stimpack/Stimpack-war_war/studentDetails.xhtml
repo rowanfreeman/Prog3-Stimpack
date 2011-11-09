@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:cc="http://java.sun.com/jsf/composite">
+
+    <body>
+        <f:view>
+            <ui:composition template="./WEB-INF/templates/main.xhtml">
+
+                <ui:define name="title">
+                    Student Details
+                </ui:define>
+                
+                <ui:define name="trail">
+                    > Student Details
+                </ui:define>
+
+                <ui:define name="content">
+                    <h:panelGroup rendered="#{!userManager.loggedIn()}">
+                        <ui:include src="./WEB-INF/templates/restricted.xhtml" />
+                    </h:panelGroup>
+                    <h:form rendered="#{userManager.student}">
+                        
+                    </h:form>
+                </ui:define>
+            </ui:composition>
+        </f:view>
+    </body>
+</html>

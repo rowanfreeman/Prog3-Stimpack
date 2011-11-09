@@ -24,14 +24,14 @@
             <c:if test="#{userManager.loggedIn()}">
             <ul>
                 <h:link outcome="index"><li>Home</li></h:link>
-                
+                <h:link rendered="#{userManager.student}" outcome="studentDetails"><li>My Details</li></h:link>
                 <h:form>
-                <h:commandLink action="#{userManager.logout()}"><li>Log out</li></h:commandLink>
+                    <h:commandLink action="#{userManager.logout()}"><li>Log out</li></h:commandLink>
                 </h:form>
             </ul>
-                Logged in as <b>#{userManager.username}</b> (#{userManager.type})
+                [ Logged in as <b>#{userManager.username}</b> (#{userManager.type}) ]
             </c:if>
-            <h:outputText value="You are not logged in" rendered="#{!userManager.loggedIn()}" />
+            <h:outputText value="[ You are not logged in ]" rendered="#{!userManager.loggedIn()}" />
         </div>
         
         <div id="trail" class="trail">
@@ -39,7 +39,9 @@
         </div>
 
         <div id="content" class="center_content">
-            <ui:insert name="content">Content</ui:insert>
+            <ui:insert name="content">
+                
+            </ui:insert>
         </div>
         
         <div id="bottom" class="bottom">
