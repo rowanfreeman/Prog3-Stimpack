@@ -6,7 +6,6 @@ package beans;
 
 import ejb.Student;
 import ejb.StudentFacadeLocal;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -23,6 +22,7 @@ public class Login {
     private String username;
     private String password;
     private String method;
+    private String error;
     @ManagedProperty(value = "#{userManager}")
     private UserManager userManager;
     @EJB
@@ -63,8 +63,22 @@ public class Login {
         this.username = username;
     }
 
+    public String  getError() {
+        return error;
+    }
+
+    public void setError(String  error) {
+        this.error = error;
+    }
+
     public void login() {
-        List<Student> findAll = studentFacade.findAll();
-        //userManager.setStudent(s);
+        Student student = studentFacade.findByUsername(username);
+        if (student == null) {
+            error = "unknown";
+        } else if (!password.equals(student.getPassword())) {
+            error = "badpwd";
+        } else {
+            userManager.setStudent(student);
+        }
     }
 }

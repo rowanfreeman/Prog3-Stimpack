@@ -6,7 +6,9 @@ package ejb;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -23,5 +25,16 @@ public class StudentFacade extends AbstractFacade<Student> implements StudentFac
 
     public StudentFacade() {
         super(Student.class);
+    }
+
+    @Override
+    public Student findByUsername(String username) {
+        TypedQuery<Student> createNamedQuery = em.createNamedQuery("Student.findByUsername", Student.class);
+        createNamedQuery.setParameter("username", username);
+        try {
+            return createNamedQuery.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 }
