@@ -24,7 +24,9 @@ public class SubjectManager {
 
     /** Creates a new instance of SubjectManager */
     public SubjectManager() {
-        m_subject = subjectFacade.find(getClassId());
+        try {
+            m_subject = subjectFacade.find(getClassId());
+        } catch (Exception e) {}
     }
     
     private int getClassId() {

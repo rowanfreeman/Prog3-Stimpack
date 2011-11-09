@@ -18,9 +18,25 @@
                 </ui:define>
 
                 <ui:define name="content">
-                    <c:forEach var="class" items="#{subjectManager.getAllSubjects()}">
-                        ${class.getName()}
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Teacher</th>
+                            <th>Time</th>
+                            <th>Capacity</th>
+                        </tr>
+                    <c:forEach var="subject" items="#{subjectManager.getAllSubjects()}">
+                        <tr>
+                            <td>${subject.getName()}</td>
+                            <td>
+                                ${subject.getTeacherId().getLastname()}, 
+                                ${subject.getTeacherId().getFirstname()}
+                            </td>
+                            <td>${subject.getSchedule()}</td>
+                            <td>${subject.getMaxstudents()}</td>
+                        </tr>
                     </c:forEach>
+                    </table>
                 </ui:define>
 
             </ui:composition>
