@@ -9,7 +9,6 @@ import ejb.Student;
 import ejb.StudentFacadeLocal;
 import ejb.Teacher;
 import ejb.TeacherFacadeLocal;
-import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
