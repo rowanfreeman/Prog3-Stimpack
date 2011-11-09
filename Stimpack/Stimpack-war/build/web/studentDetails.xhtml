@@ -23,9 +23,14 @@
                     <h:panelGroup rendered="#{!userManager.loggedIn()}">
                         <ui:include src="./WEB-INF/templates/restricted.xhtml" />
                     </h:panelGroup>
-                    <h:form rendered="#{userManager.student}">
-                        
-                    </h:form>
+                    <c:if test="#{userManager.loggedIn()}">
+                        <c:if test="#{studentDetails.exists()}">
+                            <h1>Student Details</h1>
+                        </c:if>
+                        <c:if test="#{!studentDetails.exists()}">
+                            Student does not exist.
+                        </c:if>
+                    </c:if>
                 </ui:define>
             </ui:composition>
         </f:view>

@@ -29,4 +29,6 @@ public interface StudentFacadeLocal {
     int count();
 
     Student findByUsername(String username);
+
+    Student findByStudentId(int id);
 }

@@ -38,4 +38,15 @@ public class StudentFacade extends AbstractFacade<Student> implements StudentFac
             return null;
         }
     }
+
+    @Override
+    public Student findByStudentId(int id) {
+        TypedQuery<Student> createNamedQuery = em.createNamedQuery("Student.findByStudentId", Student.class);
+        createNamedQuery.setParameter("studentId", id);
+        try {
+            return createNamedQuery.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
 }
