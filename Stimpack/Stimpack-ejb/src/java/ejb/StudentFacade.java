@@ -16,6 +16,7 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class StudentFacade extends AbstractFacade<Student> implements StudentFacadeLocal {
+
     @PersistenceContext(unitName = "Stimpack-ejbPU")
     private EntityManager em;
 
