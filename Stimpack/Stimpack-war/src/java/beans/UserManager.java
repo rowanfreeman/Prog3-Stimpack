@@ -53,7 +53,7 @@ public class UserManager {
     
     public String getUsername() {
         if (isStudent())
-            return getClass().getUsername();
+            return student.getUsername();
         else if (isTeacher())
             return teacher.getUsername();
         return null;
