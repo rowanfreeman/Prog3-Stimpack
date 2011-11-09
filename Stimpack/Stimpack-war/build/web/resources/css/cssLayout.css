@@ -129,3 +129,8 @@
 .login-table select {
     width: 10em;
 }
+
+.edit-link {
+    position: relative;
+    float:right;
+}

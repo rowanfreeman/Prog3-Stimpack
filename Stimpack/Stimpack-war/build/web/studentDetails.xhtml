@@ -14,7 +14,7 @@
                 <ui:define name="title">
                     Student Details
                 </ui:define>
-                
+
                 <ui:define name="trail">
                     > Student Details
                 </ui:define>
@@ -25,10 +25,19 @@
                     </h:panelGroup>
                     <c:if test="#{userManager.loggedIn()}">
                         <c:if test="#{studentDetails.exists()}">
-                            <h1>Student Details</h1>
+                            <h:form>
+                                <h1>Student Details</h1>
+                                <div class="edit-link"><h:commandLink value="[ edit ]"><f:param name="id" value="#{studentDetails.studentId}"></f:param></h:commandLink></div>
+                                <p><b>Student ID:</b> #{studentDetails.student.studentId}</p>
+                                <p><b>Name:</b> #{studentDetails.student.firstname} #{studentDetails.student.lastname}</p>
+                                <p><b>Age:</b> #{studentDetails.student.age}</p>
+                                <p><b>Phone:</b> #{studentDetails.student.phone}</p>
+                                <p><b>Email:</b> #{studentDetails.student.email}</p>
+                            </h:form>
                         </c:if>
                         <c:if test="#{!studentDetails.exists()}">
-                            Student does not exist.
+                            <h1>Unknown</h1>
+                            <p>Student does not exist.</p>
                         </c:if>
                     </c:if>
                 </ui:define>

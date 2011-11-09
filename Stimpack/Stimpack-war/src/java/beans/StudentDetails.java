@@ -19,6 +19,7 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @RequestScoped
 public class StudentDetails {
+    Student student;
     @EJB
     private StudentFacadeLocal studentFacade;
     private int studentId;
@@ -39,19 +40,27 @@ public class StudentDetails {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         try {
             this.studentId = Integer.parseInt((String)facesContext.getExternalContext().getRequestParameterMap().get("view"));
-        } catch (Exception e) {
-            if (userManager.isStudent())
-                this.studentId = userManager.getStudent().getStudentId();
-        }
+        } catch (Exception e) {}
+        if (userManager.isStudent())
+            this.studentId = userManager.getStudent().getStudentId();
         return this.studentId;
     }
 
     public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
     
     public boolean exists() {
-        if (studentFacade.findByStudentId(getStudentId()) != null)
+        student = studentFacade.findByStudentId(getStudentId());
+        if (student != null)
             return true;
         return false;
     }
