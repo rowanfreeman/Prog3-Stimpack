@@ -51,6 +51,19 @@ public class UserManager {
         teacher = null;
     }
     
+    public String getUsername() {
+        if (isStudent())
+            return getClass().getUsername();
+        else if (isTeacher())
+            return teacher.getUsername();
+        return null;
+    }
+    
+    // Return "Student", "Teacher" or "Administrator"
+    public String getType() {
+        return getUser().getClass().getSimpleName();
+    }
+    
     public Object getUser() {
         if (student != null)
             return student;

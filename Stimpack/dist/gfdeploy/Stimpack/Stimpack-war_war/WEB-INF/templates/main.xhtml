@@ -29,6 +29,7 @@
                 <h:commandLink action="#{userManager.logout()}"><li>Log out</li></h:commandLink>
                 </h:form>
             </ul>
+                Logged in as <b>#{userManager.username}</b> (#{userManager.type})
             </c:if>
         </div>
         
