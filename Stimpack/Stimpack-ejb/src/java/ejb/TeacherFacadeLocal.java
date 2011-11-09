@@ -27,5 +27,7 @@ public interface TeacherFacadeLocal {
     List<Teacher> findRange(int[] range);
 
     int count();
+
+    Teacher findByUsername(String username);
     
 }

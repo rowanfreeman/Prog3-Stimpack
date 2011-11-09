@@ -24,6 +24,7 @@
             <c:if test="#{userManager.loggedIn()}">
             <ul>
                 <h:link outcome="index"><li>Home</li></h:link>
+                
                 <h:form>
                 <h:commandLink action="#{userManager.logout()}"><li>Log out</li></h:commandLink>
                 </h:form>

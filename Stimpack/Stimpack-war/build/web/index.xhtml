@@ -33,18 +33,11 @@
                                     <f:selectItem itemValue="administrator" itemLabel="Administrator" />
                                 </h:selectOneMenu>
                             </h:panelGrid>
-                            <c:if test="#{login.error == 'unknown'}">
-                                <h:outputText value="Unknown username" />
-                            </c:if>
-                            <c:if test="#{login.error == 'badpwd'}">
-                                <h:outputText value="Bad username or password" />
+                            <c:if test="#{login.error != null}">
+                                <h:outputText value="#{login.error}" />
                             </c:if>
                             <br /><h:commandButton action="#{login.login()}" value="Submit" /><br />
                         </div>
-                    </h:form>
-                    <h:form rendered="#{userManager.loggedIn()}">
-                        <p>You are logged in as #{userManager.student.firstname}.</p>
-                        <h:commandLink value="Log out" action="#{userManager.logout()}" />
                     </h:form>
                 </ui:define>
             </ui:composition>

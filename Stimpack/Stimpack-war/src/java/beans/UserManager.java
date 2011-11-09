@@ -5,6 +5,7 @@
 package beans;
 
 import ejb.Student;
+import ejb.Teacher;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -17,6 +18,7 @@ import javax.faces.bean.SessionScoped;
 public class UserManager {
 
     private Student student;
+    private Teacher teacher;
 
     public UserManager() {
     }
@@ -29,8 +31,16 @@ public class UserManager {
         this.student = student;
     }
 
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
     public boolean loggedIn() {
-        if (student != null) {
+        if (student != null || teacher != null) {
             return true;
         }
         return false;
@@ -38,5 +48,26 @@ public class UserManager {
 
     public void logout() {
         student = null;
+        teacher = null;
+    }
+    
+    public Object getUser() {
+        if (student != null)
+            return student;
+        if (teacher != null)
+            return teacher;
+        return null;
+    }
+    
+    public boolean isStudent() {
+        if (getUser() instanceof Student)
+            return true;
+        return false;
+    }
+    
+    public boolean isTeacher() {
+        if (getUser() instanceof Teacher)
+            return true;
+        return false;
     }
 }

@@ -6,6 +6,10 @@ package beans;
 
 import ejb.Student;
 import ejb.StudentFacadeLocal;
+import ejb.Teacher;
+import ejb.TeacherFacadeLocal;
+import java.nio.charset.Charset;
+import java.security.MessageDigest;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -18,6 +22,9 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class Login {
+    private final String ERROR_UNKNOWN_USER = "Unknown user";
+    private final String ERROR_BAD_PASSWORD = "Password is incorrect";
+    private final String ERROR_NO_USERNAME_GIVEN = "You must enter a username";
 
     private String username;
     private String password;
@@ -27,6 +34,8 @@ public class Login {
     private UserManager userManager;
     @EJB
     private StudentFacadeLocal studentFacade;
+    @EJB
+    private TeacherFacadeLocal teacherFacade;
 
     public Login() {
     }
@@ -52,7 +61,18 @@ public class Login {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(password.getBytes());
+            byte[] byteData = md.digest();
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < byteData.length; i++) {
+                sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            this.password = sb.toString();
+        } catch (Exception e) {
+            
+        }
     }
 
     public String getUsername() {
@@ -72,13 +92,33 @@ public class Login {
     }
 
     public void login() {
+        if (username.equals(""))
+            error = ERROR_NO_USERNAME_GIVEN;
+        else if (method.equals("student"))
+            studentLogin();
+        else if (method.equals("teacher"))
+            teacherLogin();
+    }
+    
+    public void studentLogin() {
         Student student = studentFacade.findByUsername(username);
         if (student == null) {
-            error = "unknown";
+            error = ERROR_UNKNOWN_USER;
         } else if (!password.equals(student.getPassword())) {
-            error = "badpwd";
+            error = ERROR_BAD_PASSWORD;
         } else {
             userManager.setStudent(student);
+        }
+    }
+    
+    public void teacherLogin() {
+        Teacher teacher = teacherFacade.findByUsername(username);
+        if (teacher == null) {
+            error = ERROR_UNKNOWN_USER;
+        } else if (!password.equals(teacher.getPassword())) {
+            error = ERROR_BAD_PASSWORD;
+        } else {
+            userManager.setTeacher(teacher);
         }
     }
 }
