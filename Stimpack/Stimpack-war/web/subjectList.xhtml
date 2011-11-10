@@ -24,16 +24,16 @@
                         <th>Time</th>
                         <th>Capacity</th>
                     </tr>
-                <c:forEach var="subject" items="#{subjectManager.getSubjectsInScope()}">
+                <c:forEach var="subject" items="#{subjectManager.subjectsInScope}">
                     <tr>
-                        <td><a href="subjectDetails.xhtml?subjectId=${subject.getClassId()}">
-                               ${subject}
+                        <td><a href="subjectDetails.xhtml?subjectId=#{subject.classId}">
+                               #{subject}
                         </a></td>
                         <td>
-                            ${subject.getTeacherId()}
+                            #{subject.teacherId}
                         </td>
-                        <td>${subject.getSchedule()}</td>
-                        <td>${subject.getMaxstudents()}</td>
+                        <td>#{subject.schedule}</td>
+                        <td>#{subject.maxstudents}</td>
                     </tr>
                 </c:forEach>
                 </table>
