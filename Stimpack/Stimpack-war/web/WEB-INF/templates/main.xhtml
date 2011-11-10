@@ -28,6 +28,7 @@
                 <h:form>
                     <h:commandLink action="#{userManager.logout()}"><li>Log out</li></h:commandLink>
                 </h:form>
+                <h:link outcome="about"><li>About Us</li></h:link>
             </ul>
                 [ Logged in as <b>#{userManager.username}</b> (#{userManager.type}) ]
             </c:if>
