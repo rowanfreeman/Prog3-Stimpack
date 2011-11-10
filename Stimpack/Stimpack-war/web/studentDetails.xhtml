@@ -18,6 +18,9 @@
 			</ui:define>
 
 			<ui:define name="trail">
+				<c:if test="#{userManager.administrator}">
+					&gt; <h:link outcome="admin">Admin</h:link> &gt; <h:link outcome="studentList">Student List</h:link>
+				</c:if>
 				&gt; 
 				<c:if test="#{empty param.edit}">
 					Student Details

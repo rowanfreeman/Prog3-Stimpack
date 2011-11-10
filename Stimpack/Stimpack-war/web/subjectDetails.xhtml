@@ -30,7 +30,7 @@
                     <dd>${subjectManager.getSubject().getMaxstudents()}</dd>
                     <dt>Students</dt>
                     <c:forEach var="student" items="${subjectManager.getSubject().getStudentCollection()}">
-                        <dd><a href="studentDetails.xhtml?studentId=${student.getStudentId()}">
+                        <dd><a href="studentDetails.xhtml?view=${student.studentId}">
                                 ${student}
                         </a></dd>
                     </c:forEach>

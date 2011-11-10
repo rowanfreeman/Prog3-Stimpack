@@ -35,7 +35,7 @@
 						</tr>
 						<c:forEach var="student" items="#{studentDetails.allStudents}">
 							<tr>
-								<td><a href="studentDetails.xhtml?studentId=#{subject.classId}">
+								<td><a href="studentDetails.xhtml?view=#{student.studentId}">
 										#{student}
 									</a></td>
 								<td>
