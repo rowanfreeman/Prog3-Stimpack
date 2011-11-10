@@ -33,17 +33,19 @@
 					<h:link rendered="#{userManager.student}" outcome="studentDetails">
 						<li>My Details</li>
 					</h:link>
+					<h:link rendered="#{userManager.administrator}" outcome="admin">
+						<li>Admin</li>
+					</h:link>
 					<h:form>
 						<h:commandLink action="#{userManager.logout()}">
 							<li>Log out</li>
 						</h:commandLink>
 					</h:form>
 				</c:if>
-
 				<li class="logged-in-as">
 					<c:choose>
 						<c:when test="#{userManager.loggedIn()}">
-							[ Logged in as <b>#{userManager.username}</b> (#{userManager.type}) ]
+							[ Logged in as <b>#{userManager.username}</b>]
 						</c:when>
 						<c:otherwise>
 							[ You are not logged in ]

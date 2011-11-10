@@ -39,7 +39,10 @@
                                                         or <h:link outcome="register">[ register as a student ]</h:link><br />
 						</div>
 					</h:form>
-
+					<h:panelGroup rendered="#{userManager.administrator}">
+						<h1>Welcome, Administrator</h1>
+						<h:link outcome="admin">Admin section</h:link>
+					</h:panelGroup>
 				</ui:define>
 			</ui:composition>
 		</f:view>

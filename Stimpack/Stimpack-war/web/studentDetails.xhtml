@@ -9,9 +9,14 @@
 
 	<body>
 		<ui:composition template="./WEB-INF/templates/main.xhtml">
-			<c:if test="#{!empty (facesContext.externalContext.request.getParameter('form:edit'))}">
-				<c:set property="#{studentDetails.studentId}" value="#{facesContext.externalContext.request.getParameter('form:edit')}" />
-			</c:if>
+
+			<ui:define name="title">
+				Student Details
+				<h:outputText rendered="#{!empty studentDetails.studentId}"
+											value=" - #{studentDetails.student.firstname}
+											#{studentDetails.student.lastname}" />
+			</ui:define>
+
 			<ui:define name="trail">
 				&gt; 
 				<c:if test="#{empty param.edit}">

@@ -25,8 +25,8 @@
 
 #menu li {
 	list-style: none;
-	background-color: #1e90ff;
-	width: 10em;
+	background-color: #1aaaff;
+	width: 8em;
 	text-align: center;
 	padding: 0.5em;
 	border-right: 0.05em solid black;
@@ -43,8 +43,15 @@
 	background-color: #00bfff;
 	color: black;
 }
+
 #menu li.logged-in-as {
-	width: 25em !important;
+	width: 20em !important;
+	cursor: auto;
+}
+
+#menu li.logged-in-as:hover {
+	background-color: #1aaaff;
+	color: white;
 }
 
 #trail {
