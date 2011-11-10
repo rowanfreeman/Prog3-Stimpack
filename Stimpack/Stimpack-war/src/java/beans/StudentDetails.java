@@ -11,6 +11,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -33,10 +34,6 @@ public class StudentDetails {
 
 	/** Creates a new instance of StudentDetails */
 	public StudentDetails() {
-	}
-
-	public int getNum() {
-		return 1;
 	}
 
 	public int getEdit() {
@@ -67,6 +64,8 @@ public class StudentDetails {
 		if (view != 0) {
 			this.studentId = view;
 		}
+		if (FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("form:edit") != null)
+			this.studentId = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("form:edit").toString());
 		if (edit != 0) {
 			this.studentId = edit;
 		}
