@@ -40,6 +40,9 @@
     background-color: #00bfff;
     color: black;
 }
+#menu li.logged-in-as {
+    width: 25em !important;
+}
 
 #trail {
     position: relative;

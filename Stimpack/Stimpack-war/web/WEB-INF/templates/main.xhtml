@@ -17,21 +17,30 @@
 
         <div id="top" class="top">
             <h1><h:link value="University of Ballarat - Sport School" outcome="index" /></h1>
-            <ui:insert name="top"></ui:insert>
+            <ui:insert name="top">&nbsp;</ui:insert>
         </div>
         
         <div id="menu" class="menu">
-            <c:if test="#{userManager.loggedIn()}">
             <ul>
-                <h:link outcome="index"><li>Home</li></h:link>
-                <h:link rendered="#{userManager.student}" outcome="studentDetails"><li>My Details</li></h:link>
-                <h:form>
-                    <h:commandLink action="#{userManager.logout()}"><li>Log out</li></h:commandLink>
-                </h:form>
-                <h:link outcome="about"><li>About Us</li></h:link>
+                <h:link outcome="index">
+                    <li>Home</li>
+                </h:link>
+                <h:link outcome="about">
+                    <li>About Us</li>
+                </h:link>
+                
+                <c:if test="#{userManager.loggedIn()}">
+                    <h:link rendered="#{userManager.student}" outcome="studentDetails">
+                        <li>My Details</li>
+                    </h:link>
+                    <h:form>
+                        <h:commandLink action="#{userManager.logout()}">
+                            <li>Log out</li>
+                        </h:commandLink>
+                    </h:form>
+                    <li class="logged-in-as">[ Logged in as <b>#{userManager.username}</b> (#{userManager.type}) ]</li>
+                </c:if>
             </ul>
-                [ Logged in as <b>#{userManager.username}</b> (#{userManager.type}) ]
-            </c:if>
             <h:outputText value="[ You are not logged in ]" rendered="#{!userManager.loggedIn()}" />
         </div>
         
