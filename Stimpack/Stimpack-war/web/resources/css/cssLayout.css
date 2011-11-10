@@ -158,3 +158,10 @@ dl dt {
 .student-details .left {
     width: 15em;
 }
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 0.8em;
+    margin-bottom: 0.3em;
+}

@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
 
     <body>
 
@@ -20,7 +21,21 @@
             </ui:define>
 
             <ui:define name="content">
-                content
+                <h:form id="registerStudent">
+                    <label>Surname</label>
+                    <h:inputText id="surname" />
+                    <label>Given name(s)</label>
+                    <h:inputText id="firstname" />
+                    <label>Username</label>
+                    <h:inputText id="username" />
+                    <label>Password</label>
+                    <h:inputSecret id="password" />
+                    <label>Phone</label>
+                    <h:inputText id="phone" />
+                    <label>Email address</label>
+                    <h:inputText id="email" /><br />
+                    <h:commandButton id="register" value="Register" />
+                </h:form>
             </ui:define>
 
         </ui:composition>
