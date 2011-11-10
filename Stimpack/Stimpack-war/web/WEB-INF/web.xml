@@ -10,16 +10,16 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet>
-        <servlet-name>RegisterStudentServlet</servlet-name>
+        <servlet-name>EditStudentServlet</servlet-name>
         <servlet-class>servlets.EditStudentServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>RegisterStudentServlet</servlet-name>
-        <url-pattern>/RegisterStudentServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditStudentServlet</servlet-name>
+        <url-pattern>/EditStudentServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

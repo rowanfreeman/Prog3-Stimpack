@@ -90,7 +90,7 @@ public class EditStudentServlet extends HttpServlet {
             return;
         }
         
-        response.sendRedirect("/"); // TODO: figure out where to send the client back to
+        response.sendRedirect("studentDetails.xhtml");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
