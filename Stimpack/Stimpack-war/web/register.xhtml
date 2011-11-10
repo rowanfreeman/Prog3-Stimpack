@@ -21,21 +21,23 @@
             </ui:define>
 
             <ui:define name="content">
-                <h:form id="registerStudent">
+                <form method="POST" action="RegisterStudentServlet">
                     <label>Surname</label>
-                    <h:inputText id="surname" />
+                    <input type="text" name="surname" />
                     <label>Given name(s)</label>
-                    <h:inputText id="firstname" />
+                    <input type="text" name="firstname" />
                     <label>Username</label>
-                    <h:inputText id="username" />
+                    <input type="text" name="username" />
                     <label>Password</label>
-                    <h:inputSecret id="password" />
+                    <input type="password" name="password" />
+                    <label>Age</label>
+                    <input type="text" name="age" />
                     <label>Phone</label>
-                    <h:inputText id="phone" />
+                    <input type="text" name="phone" />
                     <label>Email address</label>
-                    <h:inputText id="email" /><br />
-                    <h:commandButton id="register" value="Register" />
-                </h:form>
+                    <input type="text" name="email" /><br />
+                    <input type="submit" value="Register" />
+                </form>
             </ui:define>
 
         </ui:composition>

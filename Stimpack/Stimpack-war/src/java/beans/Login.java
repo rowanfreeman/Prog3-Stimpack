@@ -22,6 +22,7 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class Login {
+<<<<<<< HEAD
 
 	private final String ERROR_UNKNOWN_USER = "Unknown user";
 	private final String ERROR_BAD_PASSWORD = "Password is incorrect";
@@ -60,7 +61,7 @@ public class Login {
 		return password;
 	}
 
-	public String md5(String password) {
+	public static String md5(String password) {
 		try {
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			md.update(password.getBytes());
