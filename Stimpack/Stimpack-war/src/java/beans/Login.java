@@ -22,8 +22,7 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class Login {
-<<<<<<< HEAD
-
+	
 	private final String ERROR_UNKNOWN_USER = "Unknown user";
 	private final String ERROR_BAD_PASSWORD = "Password is incorrect";
 	private final String ERROR_NO_USERNAME_GIVEN = "You must enter a username";

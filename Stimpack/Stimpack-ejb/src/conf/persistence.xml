@@ -3,6 +3,8 @@
   <persistence-unit name="Stimpack-ejbPU" transaction-type="JTA">
     <jta-data-source>Stimpack</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+    <validation-mode>NONE</validation-mode>
     <properties/>
   </persistence-unit>
 </persistence>
