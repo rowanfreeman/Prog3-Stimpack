@@ -37,6 +37,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Subject.findAll", query = "SELECT s FROM Subject s"),
     @NamedQuery(name = "Subject.findByClassId", query = "SELECT s FROM Subject s WHERE s.classId = :classId"),
+    @NamedQuery(name = "Subject.findByStudentId", query = "SELECT s FROM Subject s, IN (s.studentCollection) t WHERE t.studentId = :studentId"),
+    @NamedQuery(name = "Subject.findByTeacherId", query = "SELECT s FROM Subject s WHERE s.teacherId.teacherId = :teacherId"),
     @NamedQuery(name = "Subject.findByName", query = "SELECT s FROM Subject s WHERE s.name = :name"),
     @NamedQuery(name = "Subject.findByMaxstudents", query = "SELECT s FROM Subject s WHERE s.maxstudents = :maxstudents"),
     @NamedQuery(name = "Subject.findBySchedule", query = "SELECT s FROM Subject s WHERE s.schedule = :schedule")})

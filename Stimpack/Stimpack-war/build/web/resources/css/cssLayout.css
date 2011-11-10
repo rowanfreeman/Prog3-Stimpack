@@ -135,10 +135,6 @@
     float:right;
 }
 
-dl dt {
-    font-weight: bold;
-}
-
 .student-details {
     padding: 2em;
     width: 50em;
@@ -152,4 +148,8 @@ dl dt {
 
 .student-details .left {
     width: 15em;
+}
+
+dl dt {
+    font-weight: bold;
 }

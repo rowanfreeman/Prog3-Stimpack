@@ -27,5 +27,9 @@ public interface SubjectFacadeLocal {
     List<Subject> findRange(int[] range);
 
     int count();
+
+    public List<Subject> findByStudentId(int studentId);
+
+    public List<Subject> findByTeacherId(int teacherId);
     
 }

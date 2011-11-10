@@ -43,6 +43,25 @@ public class SubjectManager {
         }
     }
     
+    public List<Subject> getSubjectsInScope() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        int studentId = 0, teacherId = 0;
+        try {
+            studentId = Integer.parseInt((String)facesContext.getExternalContext().getRequestParameterMap().get("studentId"));
+        } catch (Exception e) {}
+        try {
+            teacherId = Integer.parseInt((String)facesContext.getExternalContext().getRequestParameterMap().get("teacherId"));
+        } catch (Exception e) {}
+        
+        if (studentId > 0) {
+            return subjectFacade.findByStudentId(studentId);
+        } else if (teacherId > 0) {
+            return subjectFacade.findByTeacherId(teacherId);
+        } else {
+            return subjectFacade.findAll();
+        }
+    }
+    
     public List<Subject> getAllSubjects() {
         return subjectFacade.findAll();
     }

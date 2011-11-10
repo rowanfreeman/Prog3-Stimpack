@@ -24,7 +24,7 @@
                         <th>Time</th>
                         <th>Capacity</th>
                     </tr>
-                <c:forEach var="subject" items="#{subjectManager.getAllSubjects()}">
+                <c:forEach var="subject" items="#{subjectManager.getSubjectsInScope()}">
                     <tr>
                         <td><a href="subjectDetails.xhtml?subjectId=${subject.getClassId()}">
                                ${subject}
