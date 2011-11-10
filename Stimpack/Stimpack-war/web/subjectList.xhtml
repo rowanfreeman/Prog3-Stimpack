@@ -23,6 +23,7 @@
                         <th>Teacher</th>
                         <th>Time</th>
                         <th>Capacity</th>
+                        <th>&nbsp;</th>
                     </tr>
                 <c:forEach var="subject" items="#{subjectManager.subjectsInScope}">
                     <tr>
@@ -33,7 +34,20 @@
                             #{subject.teacherId}
                         </td>
                         <td>#{subject.schedule}</td>
-                        <td>#{subject.maxstudents}</td>
+                        <td>#{subject.capacity}</td>
+                        <td><!-- action links -->
+                            <c:if test="#{userManager.loggedIn()}">
+                            <form action="SubjectServlet" method="POST">
+                                <input type="hidden" name="subjectId" value="#{subject.classId}" />
+                            <c:if test="#{userManager.type == 'Student'}">
+                                <input type="submit" name="action" value="enrol" />
+                            </c:if>
+                            <c:if test="#{userManager.type == 'Administrator'}">
+                                <input type="submit" name="action" value="delete" />
+                            </c:if>
+                            </form>
+                            </c:if>
+                        </td>
                     </tr>
                 </c:forEach>
                 </table>

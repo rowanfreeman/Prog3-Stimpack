@@ -148,4 +148,8 @@ public class Subject implements Serializable {
         return this.getName();
     }
     
+    public String getCapacity() {
+        return String.format("%d / %d", this.studentCollection.size(), this.maxstudents);
+    }
+    
 }

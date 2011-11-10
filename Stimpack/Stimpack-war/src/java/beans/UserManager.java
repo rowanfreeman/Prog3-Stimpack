@@ -81,9 +81,15 @@ public class UserManager {
         return 0;
     }
     
-    // Return "Student", "Teacher" or "Administrator"
+    // Return "Student", "Teacher", "Administrator" or null for not logged in
     public String getType() {
-        return getUser().getClass().getSimpleName();
+        Object user = getUser();
+        
+        if (user == null) {
+            return null;
+        } else {
+            return user.getClass().getSimpleName();
+        }
     }
     
     public Object getUser() {
