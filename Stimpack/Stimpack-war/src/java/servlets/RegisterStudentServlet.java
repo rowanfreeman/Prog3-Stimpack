@@ -34,10 +34,16 @@ public class RegisterStudentServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String surname, firstname, username, password, phone, email;
+        
+        String method, surname, firstname, username, password, phone, email;
+        Integer studentId = 0;
         Short age;
         
         try {
+            try {
+                studentId = Integer.parseInt(request.getParameter("student_id"));
+            } catch (Exception e) {}
+            
             surname = request.getParameter("surname");
             firstname = request.getParameter("firstname");
             username = request.getParameter("username");
@@ -48,13 +54,19 @@ public class RegisterStudentServlet extends HttpServlet {
         } catch (Exception e) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            out.println("ERROR: some form fields missing or invalid.<br />");
+            out.println("ERROR: some form fields are missing or invalid.<br />");
             out.println(e.getMessage());
             out.close();
             return;
         }
         
-        Student student = new Student();
+        Student student;
+        if (studentId > 0) {
+            student = studentFacade.find(age);
+        } else {
+            student = new Student();
+        }
+        
         student.setLastname(surname);
         student.setFirstname(firstname);
         student.setUsername(username);
@@ -64,7 +76,11 @@ public class RegisterStudentServlet extends HttpServlet {
         student.setEmail(email);
         
         try {
-            studentFacade.create(student);
+            if (studentId > 0) {
+                studentFacade.edit(student);
+            } else {
+                studentFacade.create(student);
+            }
         } catch (Exception e) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
@@ -74,7 +90,7 @@ public class RegisterStudentServlet extends HttpServlet {
             return;
         }
         
-        response.sendRedirect(".");
+        response.sendRedirect("/"); // TODO: figure out where to send the client back to
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
