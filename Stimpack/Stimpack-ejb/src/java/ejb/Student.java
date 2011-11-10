@@ -172,6 +172,6 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return "stimpack.Student[ studentId=" + studentId + " ]";
+        return this.getLastname() + ", " + this.getFirstname();
     }
 }
