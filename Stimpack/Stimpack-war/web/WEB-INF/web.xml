@@ -11,7 +11,7 @@
     </servlet>
     <servlet>
         <servlet-name>RegisterStudentServlet</servlet-name>
-        <servlet-class>servlets.RegisterStudentServlet</servlet-class>
+        <servlet-class>servlets.EditStudentServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterStudentServlet</servlet-name>

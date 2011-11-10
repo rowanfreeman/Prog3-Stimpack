@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Josh
  */
-public class RegisterStudentServlet extends HttpServlet {
+public class EditStudentServlet extends HttpServlet {
     @EJB
     private StudentFacadeLocal studentFacade;
 
