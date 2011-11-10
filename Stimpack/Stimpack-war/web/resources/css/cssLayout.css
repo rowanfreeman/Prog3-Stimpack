@@ -32,9 +32,11 @@
     padding: 0.5em;
     border-right: 0.05em solid black;
     border-bottom: 0.05em solid black;
-    cursor: pointer;
     color: white;
     float: left;
+}
+#menu li > a {
+    cursor: pointer;
 }
 #menu li:hover {
     background-color: #00bfff;
