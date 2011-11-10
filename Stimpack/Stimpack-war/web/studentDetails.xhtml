@@ -25,15 +25,51 @@
                     </h:panelGroup>
                     <c:if test="#{userManager.loggedIn()}">
                         <c:if test="#{studentDetails.exists()}">
-                            <h:form>
-                                <h1>Student Details</h1>
-                                <div class="edit-link"><h:commandLink value="[ edit ]"><f:param name="id" value="#{studentDetails.studentId}"></f:param></h:commandLink></div>
-                                <p><b>Student ID:</b> #{studentDetails.student.studentId}</p>
-                                <p><b>Name:</b> #{studentDetails.student.firstname} #{studentDetails.student.lastname}</p>
-                                <p><b>Age:</b> #{studentDetails.student.age}</p>
-                                <p><b>Phone:</b> #{studentDetails.student.phone}</p>
-                                <p><b>Email:</b> #{studentDetails.student.email}</p>
-                            </h:form>
+                            <h1>Student Details</h1>
+                            <c:if test="#{param.edit != null}">
+                                <h:form>
+                                    <div class="student-details-link"><h:commandLink value="[ return ]"><f:param name="view" value="#{studentDetails.studentId}"></f:param></h:commandLink></div>
+                                    <table class="student-details">
+                                        <tr>
+                                            <td class="left"><b>Student ID:</b></td><td>#{studentDetails.student.studentId}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left"><b>Name:</b></td><td><h:inputText value="#{studentDetails.student.firstname}" /> <h:inputText value="#{studentDetails.student.lastname}" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left"><b>Age:</b></td><td><h:inputText value="#{studentDetails.student.age}" maxlength="3" size="4" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left"><b>Phone:</b></td><td><h:inputText value="#{studentDetails.student.phone}" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left"><b>Email:</b></td><td><h:inputText value="#{studentDetails.student.email}" /></td>
+                                        </tr>
+                                    </table>
+                                </h:form>
+                            </c:if>
+                            <c:if test="#{param.edit == null}">
+                                <h:form>
+                                    <div class="student-details-link"><h:commandLink value="[ edit ]"><f:param name="edit" value="#{studentDetails.studentId}"></f:param></h:commandLink></div>
+                                    <table class="student-details">
+                                        <tr>
+                                            <td class="left"><b>Student ID:</b></td><td>#{studentDetails.student.studentId}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left"><b>Name:</b></td><td>#{studentDetails.student.firstname} #{studentDetails.student.lastname}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left"><b>Age:</b></td><td>#{studentDetails.student.age}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left"><b>Phone:</b></td><td>#{studentDetails.student.phone}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left"><b>Email:</b></td><td>#{studentDetails.student.email}</td>
+                                        </tr>
+                                    </table>
+                                </h:form>
+                            </c:if>
                         </c:if>
                         <c:if test="#{!studentDetails.exists()}">
                             <h1>Unknown</h1>

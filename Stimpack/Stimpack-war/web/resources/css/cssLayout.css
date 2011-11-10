@@ -130,11 +130,26 @@
     width: 10em;
 }
 
-.edit-link {
+.student-details-link {
     position: relative;
     float:right;
 }
 
 dl dt {
     font-weight: bold;
+}
+
+.student-details {
+    padding: 2em;
+    width: 50em;
+}
+
+.student-details td {
+    padding: 1em;
+    border-bottom: 0.05em solid black;
+    height: 4em;
+}
+
+.student-details .left {
+    width: 15em;
 }
