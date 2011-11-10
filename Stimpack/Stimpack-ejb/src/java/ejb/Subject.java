@@ -143,7 +143,7 @@ public class Subject implements Serializable {
 
     @Override
     public String toString() {
-        return "stimpack.Subject[ classId=" + classId + " ]";
+        return this.getName();
     }
     
 }

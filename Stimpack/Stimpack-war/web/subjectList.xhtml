@@ -6,40 +6,39 @@
       xmlns:f="http://java.sun.com/jsf/core">
 
     <body>
-        <f:view>
-            <ui:composition template="./WEB-INF/templates/main.xhtml">
+        <ui:composition template="./WEB-INF/templates/main.xhtml">
 
-                <ui:define name="title">
-                    Class List
-                </ui:define>
+            <ui:define name="title">
+                Class List
+            </ui:define>
 
-                <ui:define name="trail">
-                    > Class List
-                </ui:define>
+            <ui:define name="trail">
+                > Class List
+            </ui:define>
 
-                <ui:define name="content">
-                    <table>
-                        <tr>
-                            <th>Name</th>
-                            <th>Teacher</th>
-                            <th>Time</th>
-                            <th>Capacity</th>
-                        </tr>
-                    <c:forEach var="subject" items="#{subjectManager.getAllSubjects()}">
-                        <tr>
-                            <td>${subject.getName()}</td>
-                            <td>
-                                ${subject.getTeacherId().getLastname()}, 
-                                ${subject.getTeacherId().getFirstname()}
-                            </td>
-                            <td>${subject.getSchedule()}</td>
-                            <td>${subject.getMaxstudents()}</td>
-                        </tr>
-                    </c:forEach>
-                    </table>
-                </ui:define>
+            <ui:define name="content">
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Teacher</th>
+                        <th>Time</th>
+                        <th>Capacity</th>
+                    </tr>
+                <c:forEach var="subject" items="#{subjectManager.getAllSubjects()}">
+                    <tr>
+                        <td><a href="subjectDetails.xhtml?subjectId=${subject.getClassId()}">
+                               ${subject}
+                        </a></td>
+                        <td>
+                            ${subject.getTeacherId()}
+                        </td>
+                        <td>${subject.getSchedule()}</td>
+                        <td>${subject.getMaxstudents()}</td>
+                    </tr>
+                </c:forEach>
+                </table>
+            </ui:define>
 
-            </ui:composition>
-        </f:view>
+        </ui:composition>
     </body>
 </html>

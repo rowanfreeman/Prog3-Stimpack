@@ -171,7 +171,9 @@ public class Teacher implements Serializable {
 
     @Override
     public String toString() {
-        return "stimpack.Teacher[ teacherId=" + teacherId + " ]";
+        return this.getFirstname().substring(0, 1)
+                + ". "
+                + this.getLastname();
     }
     
 }

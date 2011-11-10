@@ -20,28 +20,27 @@ public class SubjectManager {
     @EJB
     private SubjectFacadeLocal subjectFacade;
     
-    private Subject m_subject;
-
     /** Creates a new instance of SubjectManager */
     public SubjectManager() {
-        try {
-            m_subject = subjectFacade.find(getClassId());
-        } catch (Exception e) {}
     }
     
-    private int getClassId() {
+    public int getSubjectId() {
         int subjectId = 0;
         
         FacesContext facesContext = FacesContext.getCurrentInstance();
         try {
-            subjectId = Integer.parseInt((String)facesContext.getExternalContext().getRequestParameterMap().get("subject"));
+            subjectId = Integer.parseInt((String)facesContext.getExternalContext().getRequestParameterMap().get("subjectId"));
         } catch (Exception e) {}
         
         return subjectId;
     }
     
     public Subject getSubject() {
-        return m_subject;
+        try {
+            return subjectFacade.find(getSubjectId());
+        } catch (Exception e) {
+            return null;
+        }
     }
     
     public List<Subject> getAllSubjects() {
