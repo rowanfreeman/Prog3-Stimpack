@@ -7,54 +7,57 @@
       xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:cc="http://java.sun.com/jsf/composite">
 
-    <body>
-        <ui:composition template="./WEB-INF/templates/main.xhtml">
+	<body>
+		<ui:composition template="./WEB-INF/templates/main.xhtml">
 
-            <ui:define name="title">
-                Class List
-            </ui:define>
+			<ui:define name="title">
+				Class List
+			</ui:define>
 
-            <ui:define name="trail">
-                &gt; <h:link outcome="admin">Admin</h:link> &gt; Class List
-            </ui:define>
+			<ui:define name="trail">
+				<c:if test="#{userManager.administrator}">
+					&gt; <h:link outcome="admin">Admin</h:link>
+				</c:if>
+				&gt; Class List
+			</ui:define>
 
-            <ui:define name="content">
-                <table>
-                    <tr>
-                        <th>Name</th>
-                        <th>Teacher</th>
-                        <th>Time</th>
-                        <th>Capacity</th>
-                        <th>&nbsp;</th>
-                    </tr>
-                <c:forEach var="subject" items="#{subjectManager.subjectsInScope}">
-                    <tr>
-                        <td><a href="subjectDetails.xhtml?subjectId=#{subject.classId}">
-                               #{subject}
-                        </a></td>
-                        <td>
-                            #{subject.teacherId}
-                        </td>
-                        <td>#{subject.schedule}</td>
-                        <td>#{subject.capacity}</td>
-                        <td><!-- action links -->
-                            <c:if test="#{userManager.loggedIn()}">
-                            <form action="SubjectServlet" method="POST">
-                                <input type="hidden" name="subjectId" value="#{subject.classId}" />
-                            <c:if test="#{userManager.type == 'Student'}">
-                                <input type="submit" name="action" value="enrol" />
-                            </c:if>
-                            <c:if test="#{userManager.type == 'Administrator'}">
-                                <input type="submit" name="action" value="delete" />
-                            </c:if>
-                            </form>
-                            </c:if>
-                        </td>
-                    </tr>
-                </c:forEach>
-                </table>
-            </ui:define>
+			<ui:define name="content">
+				<table>
+					<tr>
+						<th>Name</th>
+						<th>Teacher</th>
+						<th>Time</th>
+						<th>Capacity</th>
+						<th>&nbsp;</th>
+					</tr>
+					<c:forEach var="subject" items="#{subjectManager.subjectsInScope}">
+						<tr>
+							<td><a href="subjectDetails.xhtml?subjectId=#{subject.classId}">
+									#{subject}
+								</a></td>
+							<td>
+								#{subject.teacherId}
+							</td>
+							<td>#{subject.schedule}</td>
+							<td>#{subject.capacity}</td>
+							<td><!-- action links -->
+								<c:if test="#{userManager.loggedIn()}">
+									<form action="SubjectServlet" method="POST">
+										<input type="hidden" name="subjectId" value="#{subject.classId}" />
+										<c:if test="#{userManager.type == 'Student'}">
+											<input type="submit" name="action" value="enrol" />
+										</c:if>
+										<c:if test="#{userManager.type == 'Administrator'}">
+											<input type="submit" name="action" value="delete" />
+										</c:if>
+									</form>
+								</c:if>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</ui:define>
 
-        </ui:composition>
-    </body>
+		</ui:composition>
+	</body>
 </html>
