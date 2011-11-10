@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./WEB-INF/templates/main.xhtml">
+
+            <ui:define name="title">
+                Student List
+            </ui:define>
+
+            <ui:define name="top">
+                Student List
+            </ui:define>
+
+            <ui:define name="trail">
+                > Student List
+            </ui:define>
+
+            <ui:define name="content">
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                <c:forEach var="student" items="#{studentDetails.allStudents}">
+                    <tr>
+                        <td><a href="studentDetails.xhtml?studentId=#{subject.classId}">
+                               #{student}
+                        </a></td>
+                        <td>
+                            #{student.age}
+                        </td>
+                        <td>#{student.phone}</td>
+                        <td>#{student.email}</td>
+                        <td><!-- action links -->
+                            <c:if test="#{userManager.loggedIn()}">
+                            <form action="StudentServlet" method="POST">
+                                <input type="hidden" name="studentId" value="#{student.studentId}" />
+                            <c:if test="#{userManager.type == 'Administrator'}">
+                                <input type="submit" name="action" value="delete" />
+                            </c:if>
+                            </form>
+                            </c:if>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </table>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

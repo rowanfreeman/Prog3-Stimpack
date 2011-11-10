@@ -6,6 +6,7 @@ package beans;
 
 import ejb.Student;
 import ejb.StudentFacadeLocal;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -82,5 +83,9 @@ public class StudentDetails {
         if (student != null)
             return true;
         return false;
+    }
+    
+    public List<Student> getAllStudents() {
+        return studentFacade.findAll();
     }
 }
