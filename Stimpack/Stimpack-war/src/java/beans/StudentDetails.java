@@ -19,73 +19,84 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class StudentDetails {
-    Student student;
-    @EJB
-    private StudentFacadeLocal studentFacade;
-    private int studentId;
-    @ManagedProperty(value = "#{userManager}")
-    private UserManager userManager;
-    @ManagedProperty(value="#{param.view}")
-    private int view;
-    @ManagedProperty(value="#{param.edit}")
-    private int edit;
-    /** Creates a new instance of StudentDetails */
-    public StudentDetails() {}
 
-    public int getEdit() {
-        return edit;
-    }
+	Student student;
+	@EJB
+	private StudentFacadeLocal studentFacade;
+	private int studentId;
+	@ManagedProperty(value = "#{userManager}")
+	private UserManager userManager;
+	@ManagedProperty(value = "#{param.view}")
+	private int view;
+	@ManagedProperty(value = "#{param.edit}")
+	private int edit;
 
-    public void setEdit(int edit) {
-        this.edit = edit;
-    }
+	/** Creates a new instance of StudentDetails */
+	public StudentDetails() {
+	}
 
-    public int getView() {
-        return view;
-    }
+	public int getNum() {
+		return 1;
+	}
 
-    public void setView(int view) {
-        this.view = view;
-    }
+	public int getEdit() {
+		return edit;
+	}
 
-    public UserManager getUserManager() {
-        return userManager;
-    }
+	public void setEdit(int edit) {
+		this.edit = edit;
+	}
 
-    public void setUserManager(UserManager userManager) {
-        this.userManager = userManager;
-    }
+	public int getView() {
+		return view;
+	}
 
-    public int getStudentId() {
-        if (view != 0)
-            this.studentId = view;
-        if (edit != 0)
-            this.studentId = edit;
-        if (userManager.isStudent())
-            this.studentId = userManager.getStudent().getStudentId();
-        return this.studentId;
-    }
+	public void setView(int view) {
+		this.view = view;
+	}
 
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
-    }
+	public UserManager getUserManager() {
+		return userManager;
+	}
 
-    public Student getStudent() {
-        return student;
-    }
+	public void setUserManager(UserManager userManager) {
+		this.userManager = userManager;
+	}
 
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-    
-    public boolean exists() {
-        student = studentFacade.findByStudentId(getStudentId());
-        if (student != null)
-            return true;
-        return false;
-    }
-    
-    public List<Student> getAllStudents() {
-        return studentFacade.findAll();
-    }
+	public int getStudentId() {
+		if (view != 0) {
+			this.studentId = view;
+		}
+		if (edit != 0) {
+			this.studentId = edit;
+		}
+		if (userManager.isStudent()) {
+			this.studentId = userManager.getStudent().getStudentId();
+		}
+		return this.studentId;
+	}
+
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	public boolean exists() {
+		student = studentFacade.findByStudentId(getStudentId());
+		if (student != null) {
+			return true;
+		}
+		return false;
+	}
+
+	public List<Student> getAllStudents() {
+		return studentFacade.findAll();
+	}
 }

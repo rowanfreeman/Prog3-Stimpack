@@ -1,175 +1,179 @@
 #top {
-    position: relative;
-    background-color: #036fab;
-    color: white;
-    padding: 1em;
-    margin-left: auto;
-    margin-right: auto;
-    border: 0.05em solid black;
-    width: 70em;
+	position: relative;
+	background-color: #036fab;
+	color: white;
+	padding: 1em;
+	margin-left: auto;
+	margin-right: auto;
+	border: 0.05em solid black;
+	width: 70em;
 }
 
 #menu {
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-    width: 70em;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: 70em;
 }
 
 #menu ul {
-    padding: 0;
-    margin-top: 0;
-    border-left: 0.05em solid black;
-    overflow: hidden;
+	padding: 0;
+	margin-top: 0;
+	border-left: 0.05em solid black;
+	overflow: hidden;
 }
 
 #menu li {
-    list-style: none;
-    background-color: #1e90ff;
-    width: 10em;
-    text-align: center;
-    padding: 0.5em;
-    border-right: 0.05em solid black;
-    border-bottom: 0.05em solid black;
-    color: white;
-    float: left;
+	list-style: none;
+	background-color: #1e90ff;
+	width: 10em;
+	text-align: center;
+	padding: 0.5em;
+	border-right: 0.05em solid black;
+	border-bottom: 0.05em solid black;
+	cursor: pointer;
+	color: white;
+	float: left;
 }
-#menu li > a {
-    cursor: pointer;
+
+#menu li a {
+	cursor: pointer;
 }
 #menu li:hover {
-    background-color: #00bfff;
-    color: black;
+	background-color: #00bfff;
+	color: black;
 }
 #menu li.logged-in-as {
-    width: 25em !important;
+	width: 25em !important;
 }
 
 #trail {
-    position: relative;
-    padding: 1em;
-    margin-left: auto;
-    margin-right: auto;
-    width: 70em;
-    margin-bottom: -1.5em;
+	position: relative;
+	padding: 1em;
+	margin-left: auto;
+	margin-right: auto;
+	width: 70em;
+	margin-bottom: -1.5em;
 }
 
 #bottom {
-    position: relative;
-    padding: 1em;
-    margin: 10px 0px 0px 0px;
-    text-align: center;
+	position: relative;
+	padding: 1em;
+	margin: 10px 0px 0px 0px;
+	text-align: center;
 }
 
 #left {
-    float: left;
-    background-color: #ece3a5;
-    padding: 5px;
-    width: 150px;
+	float: left;
+	background-color: #ece3a5;
+	padding: 5px;
+	width: 150px;
 }
 
 #right {
-    float: right;
-    background-color: #ece3a5;
-    padding: 5px;
-    width: 150px;
+	float: right;
+	background-color: #ece3a5;
+	padding: 5px;
+	width: 150px;
 }
 
 .center_content {
-    position: relative;
-    background-color: #dddddd;
-    padding: 1em;
-    color: black;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 1em;
-    border: 0.05em solid black;
-    width: 70em;
+	position: relative;
+	background-color: #dddddd;
+	padding: 1em;
+	color: black;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 1em;
+	border: 0.05em solid black;
+	width: 70em;
 }
 
 .left_content {
-    background-color: #dddddd;
-    padding: 5px;
-    margin-left: 170px;
+	background-color: #dddddd;
+	padding: 5px;
+	margin-left: 170px;
 }
 
 .right_content {
-    background-color: #dddddd;
-    padding: 5px;
-    margin: 0px 170px 0px 170px;
+	background-color: #dddddd;
+	padding: 5px;
+	margin: 0px 170px 0px 170px;
 }
 
 #top a:link, #top a:visited {
-    color: white;
-    font-weight : bold;
-    text-decoration: none;
+	color: white;
+	font-weight : bold;
+	text-decoration: none;
 }
 
 #top a:link:hover, #top a:visited:hover  {
-    color: black;
-    font-weight : bold;
-    text-decoration : underline;
+	color: black;
+	font-weight : bold;
+	text-decoration : underline;
 }
 
 .login {
-    padding: 0.5em;
-    border: 0.05em solid black;
-    width: 30em;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #ece3a5;
-    overflow: hidden;
-    text-align: center;
+	padding: 0.5em;
+	border: 0.05em solid black;
+	width: 30em;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #ece3a5;
+	overflow: hidden;
+	text-align: center;
 }
 
 .login-table {
-    width: 100%;
+	width: 100%;
 }
 
 .login-table input {
-    width: 10em;
+	width: 10em;
 }
 
 .login-table select {
-    width: 10em;
+	width: 10em;
 }
 
 .student-details-link {
-    position: relative;
-    float:right;
+	position: relative;
+	float:right;
 }
 
 dl dt {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 .student-details {
-    width: 50em;
+	width: 50em;
 }
 
 .student-details td {
-    border-bottom: 0.05em solid black;
+	border-bottom: 0.05em solid black;
 }
 
 .student-details .left {
-    width: 15em;
+	padding: 1em;
+	border-bottom: 0.05em solid black;
+	height: 4em;
 }
 
 label {
-    display: block;
-    font-weight: bold;
-    margin-top: 0.8em;
-    margin-bottom: 0.3em;
+	display: block;
+	font-weight: bold;
+	margin-top: 0.8em;
+	margin-bottom: 0.3em;
 }
 
 table {
-    border-collapse: collapse;
+	border-collapse: collapse;
 }
 
 table th {
-    background: #ccc;
+	background: #ccc;
 }
 
 table td, table th {
-    padding: 0.5em 0.8em;
+	padding: 0.5em 0.8em;
 }

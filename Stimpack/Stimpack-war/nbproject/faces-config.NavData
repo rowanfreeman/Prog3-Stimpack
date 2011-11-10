@@ -2,8 +2,13 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
-        <Node id="studentDetails.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="studentDetails.xhtml" x="397" y="152" zoom="false"/>
+        <Node id="register.xhtml" x="650" y="150" zoom="true"/>
         <Node id="index.xhtml" x="150" y="150" zoom="false"/>
+        <Node id="about.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="studentList.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="subjectDetails.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="subjectList.xhtml" x="150" y="300" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>
