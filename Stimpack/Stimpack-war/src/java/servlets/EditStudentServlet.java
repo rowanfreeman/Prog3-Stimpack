@@ -34,7 +34,7 @@ public class EditStudentServlet extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 					throws ServletException, IOException {
 
-		String method, surname, firstname, username, password, phone, email;
+		String surname, firstname, username, password, phone, email;
 		Integer studentId = 0;
 		Short age;
 
@@ -62,7 +62,7 @@ public class EditStudentServlet extends HttpServlet {
 
 		Student student;
 		if (studentId > 0) {
-			student = studentFacade.find(age);
+			student = studentFacade.find(studentId);
 		} else {
 			student = new Student();
 		}
