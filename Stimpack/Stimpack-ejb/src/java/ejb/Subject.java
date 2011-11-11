@@ -151,5 +151,17 @@ public class Subject implements Serializable {
     public String getCapacity() {
         return String.format("%d / %d", this.studentCollection.size(), this.maxstudents);
     }
+		
+		public Boolean enrolStudent(Student student) {
+			if (studentCollection.size() >= maxstudents) {
+				return false;
+			}
+			
+			return studentCollection.add(student);
+		}
+		
+		public void unenrolStudent(Student student) {
+			studentCollection.remove(student);
+		}
     
 }

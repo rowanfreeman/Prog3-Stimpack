@@ -58,14 +58,12 @@ public class EnrolServlet extends HttpServlet {
 		}
 
 		try {
-			Collection<Student> studentCollection = subject.getStudentCollection();
 			if (action.equals("enrol")) {
-				studentCollection.add(student);
+				subject.enrolStudent(student);
 			} else if (action.equals("unenrol")) {
-				studentCollection.remove(student);
+				subject.unenrolStudent(student);
 			}
-
-			subject.setStudentCollection(studentCollection);
+			
 			subjectFacade.edit(subject);
 		} catch (Exception e) {
 			response.setContentType("text/html;charset=UTF-8");
