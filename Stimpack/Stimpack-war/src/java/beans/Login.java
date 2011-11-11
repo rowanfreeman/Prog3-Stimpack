@@ -9,11 +9,11 @@ import ejb.Student;
 import ejb.StudentFacadeLocal;
 import ejb.Teacher;
 import ejb.TeacherFacadeLocal;
-import java.security.MessageDigest;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import pojo.md5;
 
 /**
  *
@@ -60,23 +60,8 @@ public class Login {
 		return password;
 	}
 
-	public static String md5(String password) {
-		try {
-			MessageDigest md = MessageDigest.getInstance("MD5");
-			md.update(password.getBytes());
-			byte[] byteData = md.digest();
-			StringBuilder sb = new StringBuilder();
-			for (int i = 0; i < byteData.length; i++) {
-				sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
-			}
-			return sb.toString();
-		} catch (Exception e) {
-			return null;
-		}
-	}
-
 	public void setPassword(String password) {
-		this.password = md5(password);
+		this.password = md5.md5(password);
 	}
 
 	public String getUsername() {
@@ -132,7 +117,7 @@ public class Login {
 	private void administratorLogin() {
 		if (!username.equals("admin")) {
 			error = ERROR_UNKNOWN_USER;
-		} else if (!md5("pass").equals(password)) {
+		} else if (!md5.md5("pass").equals(password)) {
 			error = ERROR_BAD_PASSWORD;
 		} else {
 			userManager.setAdministrator(new Administrator());

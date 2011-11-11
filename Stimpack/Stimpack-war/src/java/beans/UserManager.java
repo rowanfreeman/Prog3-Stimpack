@@ -22,6 +22,7 @@ public class UserManager {
     private Teacher teacher;
     private Administrator administrator;
 
+		
     public UserManager() {
     }
 

@@ -2,7 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:cc="http://java.sun.com/jsf/composite">
 
 	<body>
 
@@ -12,32 +15,37 @@
 				Register as a Student
 			</ui:define>
 
-			<ui:define name="top">
-				Register as a Student
-			</ui:define>
-
 			<ui:define name="trail">
-				> Register
+				&gt; Register
 			</ui:define>
 
 			<ui:define name="content">
-				<form method="POST" action="EditStudentServlet">
+				<h1>Register</h1>
+				<h:form rendered="#{(!userManager.loggedIn()) and (studentManager.student.studentId==null)}" id="register">
 					<label>Surname</label>
-					<input type="text" name="surname" />
+					<h:inputText value="#{studentManager.student.lastname}" />
 					<label>Given name(s)</label>
-					<input type="text" name="firstname" />
+					<h:inputText value="#{studentManager.student.firstname}" />
 					<label>Username</label>
-					<input type="text" name="username" />
+					<h:inputText value="#{studentManager.student.username}" />
 					<label>Password</label>
-					<input type="password" name="password" />
+					<h:inputText value="#{studentManager.student.password}" />
 					<label>Age</label>
-					<input type="text" name="age" />
+					<h:inputText value="#{studentManager.student.age}" />
 					<label>Phone</label>
-					<input type="text" name="phone" />
+					<h:inputText value="#{studentManager.student.phone}" />
 					<label>Email address</label>
-					<input type="text" name="email" /><br />
-					<input type="submit" value="Register" />
-				</form>
+					<h:inputText value="#{studentManager.student.email}" />
+					<h:commandButton action="#{studentManager.add()}" id="registered" value="Register" />
+				</h:form>
+				<c:choose>
+					<c:when test="#{studentManager.student.studentId != null}">
+						<p>Registration successful. You are now logged in.</p>
+					</c:when>
+					<c:when test="#{userManager.loggedIn()}">
+						<p>You are already logged in and do no need to register.</p>
+					</c:when>
+				</c:choose>
 			</ui:define>
 
 		</ui:composition>

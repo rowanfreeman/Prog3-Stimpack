@@ -28,6 +28,12 @@
 				<h:link outcome="about">
 					<li>About Us</li>
 				</h:link>
+				<c:if test="#{!userManager.loggedIn()}">
+					<h:link outcome="register">
+						<li>Register</li>
+					</h:link>
+				</c:if>
+
 
 				<c:if test="#{userManager.loggedIn()}">
 					<h:link rendered="#{userManager.student}" outcome="studentDetails">
@@ -56,7 +62,7 @@
 		</div>
 
 		<div id="trail" class="trail">
-			<h:link value="Home" outcome="index.xhtml" /><ui:insert name="trail"></ui:insert>
+			<h:link value="Home" outcome="index" /><ui:insert name="trail"></ui:insert>
 		</div>
 
 		<div id="content" class="center_content">
