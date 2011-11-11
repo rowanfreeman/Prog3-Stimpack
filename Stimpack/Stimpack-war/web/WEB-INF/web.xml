@@ -13,9 +13,17 @@
         <servlet-name>EditStudentServlet</servlet-name>
         <servlet-class>servlets.EditStudentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EnrolServlet</servlet-name>
+        <servlet-class>servlets.EnrolServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EnrolServlet</servlet-name>
+        <url-pattern>/EnrolServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

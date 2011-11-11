@@ -42,10 +42,18 @@
 							<td>#{subject.capacity}</td>
 							<td><!-- action links -->
 								<c:if test="#{userManager.loggedIn()}">
-									<form action="SubjectServlet" method="POST">
-										<input type="hidden" name="subjectId" value="#{subject.classId}" />
+									<form action="EnrolServlet" method="POST">
+										<input type="hidden" name="subject_id" value="#{subject.classId}" />
 										<c:if test="#{userManager.type == 'Student'}">
-											<input type="submit" name="action" value="enrol" />
+											<input type="hidden" name="student_id" value="#{userManager.getStudent().studentId}" />
+											<c:choose>
+												<c:when test="#{subject.studentCollection.contains(userManager.getStudent())}">
+													<input type="submit" name="action" value="unenrol" />
+												</c:when>
+												<c:otherwise>
+													<input type="submit" name="action" value="enrol" />
+												</c:otherwise>
+											</c:choose>
 										</c:if>
 										<c:if test="#{userManager.type == 'Administrator'}">
 											<input type="submit" name="action" value="delete" />
