@@ -41,7 +41,27 @@
 					</h:form>
 					<h:panelGroup rendered="#{userManager.administrator}">
 						<h1>Welcome, Administrator</h1>
-						<h:link outcome="admin">Admin section</h:link>
+						<ul>
+							<li><h:link outcome="studentList">View all students</h:link></li>
+							<li><h:link outcome="studentAdd">Add new student</h:link></li>
+							<li><h:link outcome="teacherList">View all teachers</h:link></li>
+							<li><h:link outcome="teacherAdd">Add new teacher</h:link></li>
+							<li><h:link outcome="subjectList">View all classes</h:link></li>
+							<li><h:link outcome="subjectAdd">Add new class</h:link></li>
+						</ul>
+					</h:panelGroup>
+					<h:panelGroup rendered="#{userManager.teacher}">
+						<h1>Welcome, #{userManager.getTeacher().firstname}</h1>
+						<ul>
+							<li><h:link outcome="subjectList?teacherId=#{userManager.getTeacher().teacherId}">Your classes</h:link></li>
+						</ul>
+					</h:panelGroup>
+					<h:panelGroup rendered="#{userManager.student}">
+						<h1>Welcome, #{userManager.getStudent().firstname}</h1>
+						<ul>
+							<li><h:link outcome="studentDetails">Your student details</h:link></li>
+							<li><h:link outcome="subjectList?studentId=#{userManager.getStudent().studentId}">Your enrolled classes</h:link></li>
+						</ul>
 					</h:panelGroup>
 				</ui:define>
 			</ui:composition>
