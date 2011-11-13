@@ -22,7 +22,23 @@
 						<ui:include src="./WEB-INF/templates/restricted.xhtml" />
 					</h:panelGroup>
 					<c:if test="#{userManager.administrator}">
-
+						<h:form>
+							<label>Username</label>
+							<h:inputText id="username" />
+							<label>Password</label>
+							<h:inputSecret id="password" />
+							<label>Given name</label>
+							<h:inputText id="firstname" />
+							<label>Surname</label>
+							<h:inputText id="lastname" />
+							<label>Phone</label>
+							<h:inputText id="phone" />
+							<label>Email</label>
+							<h:inputText id="email" />
+							<label>Age</label>
+							<h:inputText id="age" />
+							<h:commandButton action="#{teacherDetails.add()}" />
+						</h:form>
 					</c:if>
 				</ui:define>
 			</ui:composition>

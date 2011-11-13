@@ -37,15 +37,15 @@ name varchar(50),
 maxstudents tinyint UNSIGNED,
 schedule time,
 PRIMARY KEY(class_id),
-FOREIGN KEY(teacher_id) REFERENCES teacher(teacher_id)
+FOREIGN KEY(teacher_id) REFERENCES teacher(teacher_id) ON DELETE CASCADE
 );
 
 CREATE TABLE student_subject
 (
 class_id int NOT NULL,
 student_id int NOT NULL,
-FOREIGN KEY(class_id) REFERENCES subject(class_id),
-FOREIGN KEY(student_id) REFERENCES student(student_id)
+FOREIGN KEY(class_id) REFERENCES subject(class_id) ON DELETE CASCADE,
+FOREIGN KEY(student_id) REFERENCES student(student_id) ON DELETE CASCADE
 );
 
 GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,ALTER ON stimpack.* TO 'stimpack'@'localhost' IDENTIFIED BY 'stimpackuser' ;

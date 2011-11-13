@@ -22,7 +22,34 @@
 						<ui:include src="./WEB-INF/templates/restricted.xhtml" />
 					</h:panelGroup>
 					<c:if test="#{userManager.administrator}">
-
+						<table>
+							<tr>
+								<th>Username</th>
+								<th>Given name</th>
+								<th>Surname</th>
+								<th>Phone</th>
+								<th>Email</th>
+								<th>Age</th>
+								<th>&nbsp;</th>
+							</tr>
+							<c:forEach var="teacher" items="#{teacherDetails.getAllTeachers()}">
+								<tr>
+									<td>#{teacher.username}</td>
+									<td>#{teacher.firstname}</td>
+									<td>#{teacher.lastname}</td>
+									<td>#{teacher.phone}</td>
+									<td>#{teacher.email}</td>
+									<td>#{teacher.age}</td>
+									<td>
+										<h:form>
+											<input type="hidden" name="teacherId" value="#{teacher.teacherId}" />
+											<h:commandButton action="#{teacherDetails.edit()}" value="Edit" />
+											<h:commandButton action="#{teacherDetails.delete()}" value="Delete" />
+										</h:form>
+									</td>
+								</tr>
+							</c:forEach>
+						</table>
 					</c:if>
 				</ui:define>
 			</ui:composition>
