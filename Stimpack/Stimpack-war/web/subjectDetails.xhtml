@@ -22,7 +22,7 @@
 			<ui:define name="content">
 				<h:form id="#{'form'}" rendered="#{empty param.edit}">
 					<div class="student-details-link">
-						<h:commandLink value="[ edit ]">
+						<h:commandLink value="[ edit ]" rendered="#{userManager.isAdministrator()}">
 							<f:param name="edit" value="#{subjectDetails.subject.classId}" />
 						</h:commandLink>
 					</div>
@@ -44,36 +44,42 @@
 					</dl>
 				</h:form>
 
+
 				<h:form rendered="#{!empty param.edit}">
-					<div class="student-details-link">
-						<h:commandLink value="[ return ]">
-							<f:param name="view" value="#{subjectDetails.subject.classId}" />
-						</h:commandLink>
-					</div>
+					<h:panelGroup rendered="#{!userManager.loggedIn() or !userManager.isAdministrator()}">
+						<ui:include src="./WEB-INF/templates/restricted.xhtml" />
+					</h:panelGroup>
+					<c:if test="#{userManager.loggedIn() and userManager.isAdministrator()}">
+						<div class="student-details-link">
+							<h:commandLink value="[ return ]">
+								<f:param name="view" value="#{subjectDetails.subject.classId}" />
+							</h:commandLink>
+						</div>
 
-					<h1>Class: ${subjectDetails.subject}</h1>
-					<dl>
-						<dt>Subject Name</dt>
-						<dd><h:inputText value="#{subjectDetails.subject.name}" /></dd>
+						<h1>Class: ${subjectDetails.subject}</h1>
+						<dl>
+							<dt>Subject Name</dt>
+							<dd><h:inputText value="#{subjectDetails.subject.name}" /></dd>
 
-						<dt>Teacher</dt>
-						<dd>
-							<h:selectOneMenu value="#{subjectDetails.subject.teacherId.teacherId}">
-								<c:forEach var="teacher" items="#{teacherDetails.allTeachers}">
-									<f:selectItem itemLabel="#{teacher}" itemValue="#{teacher.teacherId}" />
-								</c:forEach>
-							</h:selectOneMenu>
-						</dd>
-						
-						<dt>Max Students</dt>
-						<dd><h:inputText value="${subjectDetails.subject.maxstudents}" /></dd>
-						
-						<dd>
-							<h:commandButton value="Save" action="#{subjectDetails.edit()}">
-								<f:param name="edit" value="#{subjectDetails.subject.classId}" />
-							</h:commandButton>
-						</dd>
-					</dl>
+							<dt>Teacher</dt>
+							<dd>
+								<h:selectOneMenu value="#{subjectDetails.subject.teacherId.teacherId}">
+									<c:forEach var="teacher" items="#{teacherDetails.allTeachers}">
+										<f:selectItem itemLabel="#{teacher}" itemValue="#{teacher.teacherId}" />
+									</c:forEach>
+								</h:selectOneMenu>
+							</dd>
+
+							<dt>Max Students</dt>
+							<dd><h:inputText value="${subjectDetails.subject.maxstudents}" /></dd>
+
+							<dd>
+								<h:commandButton value="Save" action="#{subjectDetails.edit()}">
+									<f:param name="edit" value="#{subjectDetails.subject.classId}" />
+								</h:commandButton>
+							</dd>
+						</dl>
+					</c:if>
 				</h:form>
 			</ui:define>
 
