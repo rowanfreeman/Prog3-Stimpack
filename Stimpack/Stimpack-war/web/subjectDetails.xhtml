@@ -16,9 +16,6 @@
 			</ui:define>
 
 			<ui:define name="trail">
-				<c:if test="#{userManager.administrator}">
-					&gt; <h:link outcome="admin">Admin</h:link>
-				</c:if>
 				&gt; <h:link outcome="subjectList">Class List</h:link>  &gt; ${subjectManager.getSubject()}
 			</ui:define>
 
