@@ -19,7 +19,7 @@
 
 			<ui:define name="trail">
 				<c:if test="#{userManager.administrator}">
-					&gt; <h:link outcome="admin">Admin</h:link> &gt; <h:link outcome="studentList">Student List</h:link>
+					&gt; <h:link outcome="studentList">Student List</h:link>
 				</c:if>
 				&gt; 
 				<c:if test="#{empty param.edit}">
@@ -91,6 +91,9 @@
 									</td>
 									<td>
 										<dl>
+											<h:panelGroup rendered="#{empty studentDetails.student.subjectCollection}">
+												Student is not enrolled in any classes.
+											</h:panelGroup>
 											<c:forEach var="subject" items="#{studentDetails.student.subjectCollection}">
 												<dt>${subject}</dt>
 												<dd>${subject.schedule}</dd>

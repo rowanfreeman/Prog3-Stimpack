@@ -15,57 +15,51 @@
 			</ui:define>
 
 			<ui:define name="trail">
-				<c:if test="#{userManager.administrator}">
-					&gt; <h:link outcome="admin">Admin</h:link>
-				</c:if>
-				&gt; Class List
+				> Class List
 			</ui:define>
 
 			<ui:define name="content">
-				<table>
-					<tr>
-						<th>Name</th>
-						<th>Teacher</th>
-						<th>Time</th>
-						<th>Capacity</th>
-						<th>&nbsp;</th>
-					</tr>
-					<c:forEach var="subject" items="#{subjectManager.subjectsInScope}">
+				<h1>List of classes</h1>
+				<h:panelGroup rendered="#{empty subjectManager.subjectsInScope}">
+					Student is not enrolled in any classes.
+				</h:panelGroup>
+				<h:panelGroup rendered="#{!empty subjectManager.subjectsInScope}">
+					<table>
 						<tr>
-							<td><a href="subjectDetails.xhtml?subjectId=#{subject.classId}">
-									#{subject}
-								</a></td>
-							<td>
-								#{subject.teacherId}
-							</td>
-							<td>#{subject.schedule}</td>
-							<td>#{subject.capacity}</td>
-							<td><!-- action links -->
-								<c:if test="#{userManager.loggedIn()}">
-									<form action="EnrolServlet" method="POST">
-										<input type="hidden" name="subject_id" value="#{subject.classId}" />
-										<c:if test="#{userManager.type == 'Student'}">
-											<input type="hidden" name="student_id" value="#{userManager.getStudent().studentId}" />
-											<c:choose>
-												<c:when test="#{subject.studentCollection.contains(userManager.getStudent())}">
-													<input type="submit" name="action" value="unenrol" />
-												</c:when>
-												<c:otherwise>
-													<input type="submit" name="action" value="enrol" />
-												</c:otherwise>
-											</c:choose>
-										</c:if>
-										<c:if test="#{userManager.type == 'Administrator'}">
-											<input type="submit" name="action" value="delete" />
-										</c:if>
-									</form>
-								</c:if>
-							</td>
+							<th>Name</th>
+							<th>Teacher</th>
+							<th>Time</th>
+							<th>Capacity</th>
+							<th>&nbsp;</th>
 						</tr>
-					</c:forEach>
-				</table>
+						<c:forEach var="subject" items="#{subjectManager.subjectsInScope}">
+							<tr>
+								<td><a href="subjectDetails.xhtml?subjectId=#{subject.classId}">
+										#{subject}
+									</a></td>
+								<td>
+									#{subject.teacherId}
+								</td>
+								<td>#{subject.schedule}</td>
+								<td>#{subject.capacity}</td>
+								<td><!-- action links -->
+									<c:if test="#{userManager.loggedIn()}">
+										<form action="SubjectServlet" method="POST">
+											<input type="hidden" name="subjectId" value="#{subject.classId}" />
+											<c:if test="#{userManager.type == 'Student'}">
+												<input type="submit" name="action" value="enrol" />
+											</c:if>
+											<c:if test="#{userManager.type == 'Administrator'}">
+												<input type="submit" name="action" value="delete" />
+											</c:if>
+										</form>
+									</c:if>
+								</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</h:panelGroup>
 			</ui:define>
-
 		</ui:composition>
 	</body>
 </html>

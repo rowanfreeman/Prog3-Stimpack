@@ -16,7 +16,7 @@
 			</ui:define>
 
 			<ui:define name="trail">
-				&gt; <h:link outcome="admin">Admin</h:link> &gt; Student List
+				&gt; Student List
 			</ui:define>
 
 			<ui:define name="content">
@@ -25,6 +25,9 @@
 				</h:panelGroup>
 				<c:if test="#{userManager.administrator}">
 					<h1>Student List</h1>
+					<h:panelGroup rendered="#{studentManager.deleted}">
+						<p>Student deleted.</p>
+					</h:panelGroup>
 					<table>
 						<tr>
 							<th>Name</th>
@@ -45,10 +48,9 @@
 								<td>#{student.email}</td>
 								<td><!-- action links -->
 									<c:if test="#{userManager.loggedIn()}">
-										<form action="StudentServlet" method="POST">
-											<input type="hidden" name="studentId" value="#{student.studentId}" />
-											<input type="submit" name="action" value="delete" />
-										</form>
+										<h:form>
+											<h:commandButton value="Delete" action="#{studentManager.delete(student.studentId)}" />
+										</h:form>
 									</c:if>
 								</td>
 							</tr>

@@ -23,18 +23,26 @@ public class TeacherDetails {
 
 	@EJB
 	private TeacherFacadeLocal teacherFacade;
+	private boolean deleted;
 
 	/** Creates a new instance of TeacherDetails */
 	public TeacherDetails() {
 	}
-	
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
+
 	public Integer getTeacherId() {
 		return Integer.parseInt(
-						FacesContext
-						.getCurrentInstance()
-						.getExternalContext()
-						.getRequestParameterMap()
-						.get("teacherId"));
+						FacesContext.getCurrentInstance().
+						getExternalContext().
+						getRequestParameterMap().
+						get("teacherId"));
 	}
 
 	public Object add() {
@@ -43,14 +51,14 @@ public class TeacherDetails {
 
 	public Object delete() {
 		Integer teacherId = getTeacherId();
-		
+
 		Teacher teacher = teacherFacade.find(teacherId);
 		if (teacher != null) {
 			teacherFacade.remove(teacher);
 		} else {
 			throw new RuntimeException("diddly fiddle: " + teacherId);
 		}
-
+		this.deleted = true;
 		return "teacherList";
 	}
 

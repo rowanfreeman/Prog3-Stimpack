@@ -10,6 +10,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -26,9 +27,18 @@ public class StudentManager {
 	private StudentDetails studentDetails;
 	@ManagedProperty(value = "#{userManager}")
 	private UserManager userManager;
+	private boolean deleted;
 
 	/** Creates a new instance of StudentManager */
 	public StudentManager() {
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public UserManager getUserManager() {
@@ -64,5 +74,10 @@ public class StudentManager {
 	public void add() {
 		studentFacade.create(this.student);
 		userManager.setStudent(student);
+	}
+	
+	public void delete(int studentId) {
+		studentFacade.remove(studentFacade.findByStudentId(studentId));
+		this.deleted = true;
 	}
 }

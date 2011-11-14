@@ -17,6 +17,7 @@
 				<ui:define name="trail">
 
 				</ui:define>
+
 				<ui:define name="content">
 					<h:form rendered="#{!userManager.loggedIn()}">
 						<div class="login">
@@ -53,14 +54,15 @@
 					<h:panelGroup rendered="#{userManager.teacher}">
 						<h1>Welcome, #{userManager.getTeacher().firstname}</h1>
 						<ul>
-							<li><h:link outcome="subjectList?teacherId=#{userManager.getTeacher().teacherId}">Your classes</h:link></li>
+							<li><h:link outcome="subjectList?teacherId=#{userManager.getTeacher().teacherId}">My classes</h:link></li>
 						</ul>
 					</h:panelGroup>
 					<h:panelGroup rendered="#{userManager.student}">
 						<h1>Welcome, #{userManager.getStudent().firstname}</h1>
 						<ul>
-							<li><h:link outcome="studentDetails">Your student details</h:link></li>
-							<li><h:link outcome="subjectList?studentId=#{userManager.getStudent().studentId}">Your enrolled classes</h:link></li>
+							<li><h:link outcome="studentDetails">My student details</h:link></li>
+							<li><h:link outcome="subjectList?studentId=#{userManager.getStudent().studentId}">My enrolled classes</h:link></li>
+							<li><h:link outcome="subjectList">Enrol to a new class</h:link></li>
 						</ul>
 					</h:panelGroup>
 				</ui:define>
