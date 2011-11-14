@@ -73,4 +73,12 @@ public class TeacherDetails {
 	public List<Teacher> getAllTeachers() {
 		return teacherFacade.findAll();
 	}
+	
+	public boolean exists(int id) {
+		if (teacher == null)
+			this.teacher = teacherFacade.find(id);
+		if (teacher != null)
+			return true;
+		return false;
+	}
 }
