@@ -6,6 +6,9 @@ package beans;
 
 import ejb.Student;
 import ejb.StudentFacadeLocal;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -73,7 +76,14 @@ public class StudentManager {
 
 	public void add() {
 		studentFacade.create(this.student);
-		userManager.setStudent(student);
+		if (!userManager.loggedIn())
+			userManager.setStudent(student);
+		else
+			try {
+			FacesContext.getCurrentInstance().getExternalContext().dispatch("studentList.xhtml?add="+student.getStudentId());
+		} catch (IOException ex) {
+			Logger.getLogger(StudentManager.class.getName()).log(Level.SEVERE, null, ex);
+		}
 	}
 	
 	public void delete(int studentId) {

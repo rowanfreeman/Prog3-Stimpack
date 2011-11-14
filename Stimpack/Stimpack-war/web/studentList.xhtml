@@ -28,6 +28,9 @@
 					<h:panelGroup rendered="#{studentManager.deleted}">
 						<p>Student deleted.</p>
 					</h:panelGroup>
+					<h:panelGroup rendered="#{!empty param.add}">
+						<p>Student added.</p>
+					</h:panelGroup>
 					<table>
 						<tr>
 							<th>Name</th>
