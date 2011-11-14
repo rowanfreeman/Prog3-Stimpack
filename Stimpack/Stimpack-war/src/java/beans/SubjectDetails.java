@@ -6,6 +6,8 @@ package beans;
 
 import ejb.Subject;
 import ejb.SubjectFacadeLocal;
+import ejb.Teacher;
+import ejb.TeacherFacadeLocal;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -22,10 +24,13 @@ public class SubjectDetails {
 
 	@EJB
 	private SubjectFacadeLocal subjectFacade;
+	@EJB
+	private TeacherFacadeLocal teacherFacade;
 	@ManagedProperty(value = "#{param.view}")
 	private int view;
 	@ManagedProperty(value = "#{param.edit}")
 	private int edit;
+	
 	private Subject subject;
 
 	/** Creates a new instance of SubjectDetails */
@@ -73,6 +78,15 @@ public class SubjectDetails {
 
 	public void setSubject(Subject subject) {
 		this.subject = subject;
+	}
+
+	public int getTeacherId() {
+		return this.subject.getTeacherId().getTeacherId();
+	}
+
+	public void setTeacherId(int teacherId) {
+		Teacher newTeacher = teacherFacade.find(teacherId);
+		this.subject.setTeacherId(newTeacher);
 	}
 	
 	public String edit() {

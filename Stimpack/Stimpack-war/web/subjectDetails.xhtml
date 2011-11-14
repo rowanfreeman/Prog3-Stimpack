@@ -63,7 +63,7 @@
 
 							<dt>Teacher</dt>
 							<dd>
-								<h:selectOneMenu value="#{subjectDetails.subject.teacherId.teacherId}">
+								<h:selectOneMenu id="teacher" value="#{subjectDetails.teacherId}">
 									<c:forEach var="teacher" items="#{teacherDetails.allTeachers}">
 										<f:selectItem itemLabel="#{teacher}" itemValue="#{teacher.teacherId}" />
 									</c:forEach>
