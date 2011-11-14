@@ -51,6 +51,9 @@
 									<td class="left"><b>Student ID:</b></td><td>#{studentDetails.studentId}</td>
 								</tr>
 								<tr>
+									<td class="left"><b>Username:</b></td><td><h:inputText value="#{studentDetails.student.username}" maxlength="30" /></td>
+								</tr>
+								<tr>
 									<td class="left"><b>Name:</b></td><td><h:inputText value="#{studentDetails.student.firstname}" maxlength="30" /> <h:inputText value="#{studentDetails.student.lastname}" maxlength="30" /></td>
 								</tr>
 								<tr>
@@ -71,6 +74,9 @@
 							<table class="student-details">
 								<tr>
 									<td class="left"><b>Student ID:</b></td><td>#{studentDetails.student.studentId}</td>
+								</tr>
+								<tr>
+									<td class="left"><b>Username:</b></td><td>#{studentDetails.student.username}</td>
 								</tr>
 								<tr>
 									<td class="left"><b>Name:</b></td><td>#{studentDetails.student.firstname} #{studentDetails.student.lastname}</td>
@@ -106,7 +112,7 @@
 					</c:if>
 					<c:if test="#{!studentDetails.exists()}">
 						<h1>Unknown</h1>
-						<p>Student does not exist.</p>
+						<p>Specified student does not exist or no student ID was provided.</p>
 					</c:if>
 				</c:if>
 			</ui:define>
