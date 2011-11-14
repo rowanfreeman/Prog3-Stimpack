@@ -9,7 +9,6 @@ import ejb.TeacherFacadeLocal;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
@@ -21,6 +20,7 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 public class TeacherDetails {
 
+	private Teacher teacher;
 	@EJB
 	private TeacherFacadeLocal teacherFacade;
 	private boolean deleted;
@@ -35,6 +35,14 @@ public class TeacherDetails {
 
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
+	}
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
 	}
 
 	public Integer getTeacherId() {
@@ -52,8 +60,8 @@ public class TeacherDetails {
 	public Object delete() {
 		Integer teacherId = getTeacherId();
 
-		Teacher teacher = teacherFacade.find(teacherId);
-		if (teacher != null) {
+		this.teacher = teacherFacade.find(teacherId);
+		if (this.teacher != null) {
 			teacherFacade.remove(teacher);
 		} else {
 			throw new RuntimeException("diddly fiddle: " + teacherId);

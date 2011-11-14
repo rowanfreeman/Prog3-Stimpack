@@ -11,33 +11,34 @@
 			<ui:composition template="./WEB-INF/templates/main.xhtml">
 
 				<ui:define name="title">
-					Home
+					Add new teacher
 				</ui:define>
 
 				<ui:define name="trail">
-
+					&gt; Add new teacher
 				</ui:define>
 				<ui:define name="content">
 					<h:panelGroup rendered="#{!userManager.administrator}">
 						<ui:include src="./WEB-INF/templates/restricted.xhtml" />
 					</h:panelGroup>
 					<c:if test="#{userManager.administrator}">
+						<h1>Add new teacher</h1>
 						<h:form>
 							<label>Username</label>
-							<h:inputText id="username" />
+							<h:inputText value="#{teacherManager.teacher.username}" />
 							<label>Password</label>
-							<h:inputSecret id="password" />
+							<h:inputText value="#{teacherManager.teacher.password}" />
 							<label>Given name</label>
-							<h:inputText id="firstname" />
+							<h:inputText value="#{teacherManager.teacher.firstname}" />
 							<label>Surname</label>
-							<h:inputText id="lastname" />
+							<h:inputText value="#{teacherManager.teacher.lastname}" />
 							<label>Phone</label>
-							<h:inputText id="phone" />
+							<h:inputText value="#{teacherManager.teacher.phone}" />
 							<label>Email</label>
-							<h:inputText id="email" />
+							<h:inputText value="#{teacherManager.teacher.email}" />
 							<label>Age</label>
-							<h:inputText id="age" />
-							<h:commandButton action="#{teacherDetails.add()}" />
+							<h:inputText value="#{teacherManager.teacher.age}" />
+							<p><h:commandButton action="#{teacherManager.add()}" value="Submit" /></p>
 						</h:form>
 					</c:if>
 				</ui:define>

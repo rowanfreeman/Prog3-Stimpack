@@ -25,7 +25,10 @@
 					<c:if test="#{userManager.administrator}">
 						<h1>Teacher List</h1>
 						<h:panelGroup rendered="#{teacherDetails.deleted}">
-							Teacher deleted.
+							<p>Teacher deleted.</p>
+						</h:panelGroup>
+						<h:panelGroup rendered="#{!empty param.add}">
+							<p>Teacher added.</p>
 						</h:panelGroup>
 						<table>
 							<tr>
