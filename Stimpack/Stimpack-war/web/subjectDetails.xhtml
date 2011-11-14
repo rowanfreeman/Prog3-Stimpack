@@ -16,25 +16,66 @@
 			</ui:define>
 
 			<ui:define name="trail">
-				&gt; <h:link outcome="subjectList">Class List</h:link>  &gt; ${subjectManager.getSubject()}
+				&gt; <h:link outcome="subjectList">Class List</h:link>  &gt; ${subjectDetails.subject}
 			</ui:define>
 
 			<ui:define name="content">
-				<h1>Class: ${subjectManager.getSubject()}</h1>
-				<dl>
-					<dt>Subject</dt>
-					<dd>${subjectManager.getSubject()}</dd>
-					<dt>Teacher</dt>
-					<dd>${subjectManager.getSubject().getTeacherId()}</dd>
-					<dt>Max Students</dt>
-					<dd>${subjectManager.getSubject().getMaxstudents()}</dd>
-					<dt>Students</dt>
-					<c:forEach var="student" items="${subjectManager.getSubject().getStudentCollection()}">
-						<dd><a href="studentDetails.xhtml?view=${student.studentId}">
-								${student}
-							</a></dd>
-					</c:forEach>
-				</dl>
+				<h:form id="#{'form'}" rendered="#{empty param.edit}">
+					<div class="student-details-link">
+						<h:commandLink value="[ edit ]">
+							<f:param name="edit" value="#{subjectDetails.subject.classId}" />
+						</h:commandLink>
+					</div>
+
+					<h1>Class: ${subjectDetails.subject}</h1>
+					<dl>
+						<dt>Subject</dt>
+						<dd>${subjectDetails.subject}</dd>
+						<dt>Teacher</dt>
+						<dd>${subjectDetails.subject.teacherId}</dd>
+						<dt>Max Students</dt>
+						<dd>${subjectDetails.subject.maxstudents}</dd>
+						<dt>Students</dt>
+						<c:forEach var="student" items="${subjectDetails.subject.studentCollection}">
+							<dd><a href="studentDetails.xhtml?view=${student.studentId}">
+									${student}
+								</a></dd>
+						</c:forEach>
+					</dl>
+				</h:form>
+
+				<h:form rendered="#{!empty param.edit}">
+					<div class="student-details-link">
+						<h:commandLink value="[ return ]">
+							<f:param name="view" value="#{subjectDetails.subject.classId}" />
+						</h:commandLink>
+					</div>
+
+					<h1>Class: ${subjectDetails.subject}</h1>
+					<dl>
+						<dt>Subject Name</dt>
+						<dd><h:inputText value="#{subjectDetails.subject.name}" /></dd>
+
+						<dt>Teacher</dt>
+						<dd>
+							<h:selectOneMenu value="#{subjectDetails.subject.teacherId.teacherId}">
+								<c:forEach var="teacher" items="#{teacherDetails.allTeachers}">
+									<f:selectItem itemLabel="#{teacher}" itemValue="#{teacher.teacherId}" />
+								</c:forEach>
+							</h:selectOneMenu>
+						</dd>
+						
+						<dt>Max Students</dt>
+						<dd><h:inputText value="${subjectDetails.subject.maxstudents}" /></dd>
+						
+						<dt>Students</dt>
+						<c:forEach var="student" items="${subjectDetails.subject.getStudentCollection()}">
+							<dd><a href="studentDetails.xhtml?view=${student.studentId}">
+									${student}
+								</a></dd>
+						</c:forEach>
+					</dl>
+				</h:form>
 			</ui:define>
 
 		</ui:composition>
