@@ -87,7 +87,7 @@ public class TeacherDetails {
 		if (this.teacher != null) {
 			teacherFacade.remove(teacher);
 		} else {
-			throw new RuntimeException("diddly fiddle: " + teacherId);
+			throw new RuntimeException("Teacher is null: " + teacherId);
 		}
 		this.deleted = true;
 		return "teacherList";
