@@ -10,10 +10,6 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet>
-        <servlet-name>EditStudentServlet</servlet-name>
-        <servlet-class>servlets.EditStudentServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>EnrolServlet</servlet-name>
         <servlet-class>servlets.EnrolServlet</servlet-class>
     </servlet>
