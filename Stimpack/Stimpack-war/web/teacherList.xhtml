@@ -42,7 +42,7 @@
 							</tr>
 							<c:forEach var="teacher" items="#{teacherDetails.getAllTeachers()}">
 								<tr>
-									<td>#{teacher.username}</td>
+									<td><h:link outcome="teacherDetails?view=#{teacher.teacherId}">#{teacher.username}</h:link></td>
 									<td>#{teacher.firstname}</td>
 									<td>#{teacher.lastname}</td>
 									<td>#{teacher.phone}</td>
