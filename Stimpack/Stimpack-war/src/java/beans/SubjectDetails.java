@@ -74,4 +74,13 @@ public class SubjectDetails {
 	public void setSubject(Subject subject) {
 		this.subject = subject;
 	}
+	
+	public String edit() {
+		try {
+			subjectFacade.edit(subject);
+			return "subjectList";
+		} catch (Exception e) {
+			return "subjectList"; // i'm sure there's something more appropriate to do here
+		}
+	}
 }

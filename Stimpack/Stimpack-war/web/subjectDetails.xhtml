@@ -68,12 +68,11 @@
 						<dt>Max Students</dt>
 						<dd><h:inputText value="${subjectDetails.subject.maxstudents}" /></dd>
 						
-						<dt>Students</dt>
-						<c:forEach var="student" items="${subjectDetails.subject.getStudentCollection()}">
-							<dd><a href="studentDetails.xhtml?view=${student.studentId}">
-									${student}
-								</a></dd>
-						</c:forEach>
+						<dd>
+							<h:commandButton value="Save" action="#{subjectDetails.edit()}">
+								<f:param name="edit" value="#{subjectDetails.subject.classId}" />
+							</h:commandButton>
+						</dd>
 					</dl>
 				</h:form>
 			</ui:define>
