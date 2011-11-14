@@ -34,16 +34,18 @@
 					<ui:include src="./WEB-INF/templates/restricted.xhtml" />
 				</h:panelGroup>
 				<c:if test="#{userManager.administrator}">
-					<c:if test="#{teacherDetails.exists(param.view) or teacherDetails.exists(param.edit)}">
+					<h:panelGroup rendered="#{teacherDetails.exists(param.view) or teacherDetails.exists(param.edit)}">
 						<h1>Teacher Details</h1>
-						<h:form rendered="#{!empty param.edit}">
+						<h:outputText rendered="#{teacherDetails.edited}" value="Teacher updated." />
+					</h:panelGroup>
+						<h:form rendered="#{teacherDetails.exists(param.edit) and !empty param.edit and !teacherDetails.edited}">
 							<div class="student-details-link">
 								<h:commandLink value="[ return ]">
 									<f:param name="view" value="#{teacherDetails.teacher.teacherId}" />
 								</h:commandLink>
 							</div>
 						</h:form>
-						<h:form rendered="#{!empty param.edit}" id="#{'form'}">
+					<h:form rendered="#{teacherDetails.exists(param.edit) and !empty param.edit and !teacherDetails.edited}" id="#{'form'}">
 							<table class="student-details">
 								<tr>
 									<td class="left"><b>Teacher ID:</b></td><td>#{teacherDetails.teacher.teacherId}</td>
@@ -52,7 +54,7 @@
 									<td class="left"><b>Username:</b></td><td><h:inputText value="#{teacherDetails.teacher.username}" maxlength="30" /></td>
 								</tr>
 								<tr>
-									<td class="left"><b>Name:</b></td><td><h:inputText value="#{teacherDetails.teacher.firstname}" maxlength="30" /> <h:inputText value="#{studentDetails.student.lastname}" maxlength="30" /></td>
+									<td class="left"><b>Name:</b></td><td><h:inputText value="#{teacherDetails.teacher.firstname}" maxlength="30" /> <h:inputText value="#{teacherDetails.teacher.lastname}" maxlength="30" /></td>
 								</tr>
 								<tr>
 									<td class="left"><b>Age:</b></td><td><h:inputText value="#{teacherDetails.teacher.age}" maxlength="3" size="4" /></td>
@@ -64,9 +66,10 @@
 									<td class="left"><b>Email:</b></td><td><h:inputText value="#{teacherDetails.teacher.email}" maxlength="100" size="40" /></td>
 								</tr>
 							</table>
-							<p style="margin-left: 20em;"><h:commandButton value="Submit" action="#{teacherManager.edit(teacherDetails.teacher.teacherId)}" /> <h:commandButton type="reset" value="Reset" /></p>
+							<h:inputHidden value="#{teacherDetails.teacher.teacherId}" />
+							<p style="margin-left: 20em;"><h:commandButton value="Submit" action="#{teacherManager.edit()}"><f:param name="edit" value="#{teacherDetails.teacher.teacherId}" /></h:commandButton> <h:commandButton type="reset" value="Reset" /></p>
 						</h:form>
-						<h:form rendered="#{empty param.edit}">
+						<h:form rendered="#{(teacherDetails.exists(param.view) and !empty param.view) or teacherDetails.edited}">
 							<div class="student-details-link"><h:commandLink value="[ edit ]"><f:param name="edit" value="#{teacherDetails.teacher.teacherId}"></f:param></h:commandLink></div>
 							<table class="student-details">
 								<tr>
@@ -106,7 +109,6 @@
 								</tr>
 							</table>
 						</h:form>
-					</c:if>
 					<c:if test="#{!teacherDetails.exists(param.view) and !teacherDetails.exists(param.edit)}">
 						<h1>Unknown</h1>
 						<p>Specified teacher does not exist or no teacher ID was provided.</p>

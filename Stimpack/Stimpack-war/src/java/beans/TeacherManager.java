@@ -53,8 +53,9 @@ public class TeacherManager {
 	}
 
 	public Teacher getTeacher() {
-		if (this.teacher == null)
+		if (this.teacher == null) {
 			return this.teacher = new Teacher();
+		}
 		return this.teacher;
 	}
 
@@ -71,22 +72,19 @@ public class TeacherManager {
 	}
 
 	public void edit() {
-		// broken
-		//teacherFacade.edit(teacherDetails.);
+		teacherFacade.edit(teacherDetails.getTeacher());
+		teacherDetails.setEdited(true);
 	}
 
 	public void add() {
 		teacherFacade.create(this.teacher);
-		if (!userManager.loggedIn())
-			userManager.setTeacher(teacher);
-		else
-			try {
-			FacesContext.getCurrentInstance().getExternalContext().dispatch("teacherList.xhtml?add="+teacher.getTeacherId());
+		try {
+			FacesContext.getCurrentInstance().getExternalContext().dispatch("teacherList.xhtml?add=" + teacher.getTeacherId());
 		} catch (IOException ex) {
 			Logger.getLogger(TeacherManager.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
-	
+
 	public void delete(int teacherId) {
 		// broken
 		//studentFacade.remove(studentFacade.findByStudentId(studentId));
