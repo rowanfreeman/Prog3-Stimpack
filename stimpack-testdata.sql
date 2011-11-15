@@ -14,12 +14,12 @@ VALUES
 INSERT INTO subject
 ( class_id, teacher_id, name, maxstudents, schedule )
 VALUES
-( 1, 1, 'Intro to Music Theory', 66, '14:30' ),
-( 2, 2, 'Programming 2', 40, '09:30' ),
-( 3, 1, 'Elements of Classical Music', 30, '08:30' ),
-( 4, 3, 'Generating Test Data 101', 90, '16:30' ),
-( 5, 2, 'Database Administration', 30, '12:30' ),
-( 6, 3, 'Advanced Test Data', 20, '12:30' );
+( 1, 1, 'Intro to Music Theory', 66, 'Monday 14:30' ),
+( 2, 2, 'Programming 2', 40, 'Tuesday 09:30' ),
+( 3, 1, 'Elements of Classical Music', 30, 'Thursday 08:30' ),
+( 4, 3, 'Generating Test Data 101', 90, 'Thursday 16:30' ),
+( 5, 2, 'Database Administration', 30, 'Monday 12:30' ),
+( 6, 3, 'Advanced Test Data', 20, 'Wednesday 12:30' );
 
 INSERT INTO student
 ( student_id, username, password, firstname, lastname, phone, email, age )

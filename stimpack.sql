@@ -35,7 +35,7 @@ class_id int NOT NULL AUTO_INCREMENT,
 teacher_id int,
 name varchar(50),
 maxstudents tinyint UNSIGNED,
-schedule time,
+schedule varchar(32),
 PRIMARY KEY(class_id),
 FOREIGN KEY(teacher_id) REFERENCES teacher(teacher_id) ON DELETE CASCADE
 );

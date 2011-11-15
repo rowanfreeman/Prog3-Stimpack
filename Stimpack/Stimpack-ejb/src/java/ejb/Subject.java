@@ -56,8 +56,7 @@ public class Subject implements Serializable {
     @Column(name = "maxstudents")
     private Short maxstudents;
     @Column(name = "schedule")
-    @Temporal(TemporalType.TIME)
-    private Date schedule;
+    private String schedule;
     @JoinTable(name = "student_subject", joinColumns = {
         @JoinColumn(name = "class_id", referencedColumnName = "class_id")}, inverseJoinColumns = {
         @JoinColumn(name = "student_id", referencedColumnName = "student_id")})
@@ -98,11 +97,11 @@ public class Subject implements Serializable {
         this.maxstudents = maxstudents;
     }
 
-    public Date getSchedule() {
+    public String getSchedule() {
         return schedule;
     }
 
-    public void setSchedule(Date schedule) {
+    public void setSchedule(String schedule) {
         this.schedule = schedule;
     }
 
