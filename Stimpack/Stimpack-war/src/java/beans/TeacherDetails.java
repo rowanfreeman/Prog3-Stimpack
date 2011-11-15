@@ -9,6 +9,7 @@ import ejb.TeacherFacadeLocal;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
@@ -20,21 +21,18 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 public class TeacherDetails {
 
-	private int edit;
 	Teacher teacher;
 	@EJB
 	private TeacherFacadeLocal teacherFacade;
 	private boolean deleted;
 	private boolean edited;
+	@ManagedProperty(value = "#{param.view}")
+	private int view;
+	@ManagedProperty(value = "#{param.edit}")
+	private int edit;
 
 	/** Creates a new instance of TeacherDetails */
 	public TeacherDetails() {
-	}
-
-	public int getEdit() {
-		if (edit == 0)
-			edit = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("edit"));
-		return edit;
 	}
 
 	public boolean isEdited() {
@@ -45,10 +43,6 @@ public class TeacherDetails {
 		this.edited = edited;
 	}
 
-	public void setEdit(int edit) {
-		this.edit = edit;
-	}
-
 	public boolean isDeleted() {
 		return deleted;
 	}
@@ -57,9 +51,28 @@ public class TeacherDetails {
 		this.deleted = deleted;
 	}
 
+	public int getEdit() {
+		return edit;
+	}
+
+	public void setEdit(int edit) {
+		this.edit = edit;
+	}
+
+	public int getView() {
+		return view;
+	}
+
+	public void setView(int view) {
+		this.view = view;
+	}
+
 	public Teacher getTeacher() {
-		if (edit > 0) {
-			return teacher = teacherFacade.find(edit);
+		if (teacher == null) {
+			int teacherId = getTeacherId();
+			if (teacherId > 0) {
+				teacher = teacherFacade.find(teacherId);
+			}
 		}
 		return teacher;
 	}
@@ -69,11 +82,23 @@ public class TeacherDetails {
 	}
 
 	public Integer getTeacherId() {
-		return Integer.parseInt(
-						FacesContext.getCurrentInstance().
+		if (view > 0) {
+			return view;
+		}
+		if (edit > 0) {
+			return edit;
+		}
+		if (FacesContext.getCurrentInstance().
 						getExternalContext().
 						getRequestParameterMap().
-						get("teacherId"));
+						get("teacherId") != null) {
+			return Integer.parseInt(
+							FacesContext.getCurrentInstance().
+							getExternalContext().
+							getRequestParameterMap().
+							get("teacherId"));
+		}
+		return 0;
 	}
 
 	public Object add() {
@@ -98,15 +123,6 @@ public class TeacherDetails {
 	}
 
 	public boolean exists(int id) {
-		if (teacher != null) {
-			return true;
-		}
-		if (teacher == null) {
-			teacher = teacherFacade.find(id);
-		}
-		if (teacher != null) {
-			return true;
-		}
-		return false;
+		return this.teacher != null;
 	}
 }
