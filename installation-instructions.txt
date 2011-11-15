@@ -1,0 +1,24 @@
+Installation instructions:
+
+- Install mySQL from http://dev.mysql.com/downloads/mysql/
+- Install Glassfish EE server from http://glassfish.java.net/
+- Execute both "stimpack.sql" and "stimpack-testdata.sql" through a mySQL administration console or GUI tool - ensure a "stimpack" database has been created
+- Navigate to the admin interface of Glassfish (usually http://localhost:4848/ )
+- Select the "Deploy an Application" task
+- Choose the "Stimpack.ear" file from the "dist" folder
+- Leave all options as default, and click OK
+- Navigate to http://localhost:8080/Stimpack-war/ (change the port from 8080 if your Glassfish server is on a non-standard port)
+
+Default student accounts:
+30081056 / password
+30054983 / password
+30020973 / password
+
+Default teacher accounts:
+d.balsam / password
+a.programmer / password
+t.user / password
+j.rule / password
+
+Default admin account:
+admin / pass
