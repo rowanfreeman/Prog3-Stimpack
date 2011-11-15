@@ -20,6 +20,9 @@
 
 			<ui:define name="content">
 				<h1>Subject List</h1>
+				<h:panelGroup rendered="#{param.add == 'true'}">
+					Subject added.
+				</h:panelGroup>
 				<table>
 					<tr>
 						<th>Name</th>

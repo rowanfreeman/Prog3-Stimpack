@@ -30,7 +30,6 @@ public class SubjectDetails {
 	private SubjectFacadeLocal subjectFacade;
 	@EJB
 	private TeacherFacadeLocal teacherFacade;
-	
 	@ManagedProperty(value = "#{param.view}")
 	private int view;
 	@ManagedProperty(value = "#{param.edit}")
@@ -39,37 +38,36 @@ public class SubjectDetails {
 	private int delete;
 	@ManagedProperty(value = "#{param.student}")
 	private int studentId;
-	
 	private Subject subject;
 
 	/** Creates a new instance of SubjectDetails */
 	public SubjectDetails() {
 	}
-
+	
 	public int getEdit() {
 		return edit;
 	}
-
+	
 	public void setEdit(int edit) {
 		this.edit = edit;
 	}
-
+	
 	public int getView() {
 		return view;
 	}
-
+	
 	public void setView(int view) {
 		this.view = view;
 	}
-
+	
 	public int getDelete() {
 		return delete;
 	}
-
+	
 	public void setDelete(int delete) {
 		this.delete = delete;
 	}
-
+	
 	public int getSubjectId() {
 		if (view > 0) {
 			return view;
@@ -85,7 +83,7 @@ public class SubjectDetails {
 		}
 		return 0;
 	}
-
+	
 	public Subject getSubject() {
 		if (subject == null) {
 			int subjectId = getSubjectId();
@@ -93,45 +91,60 @@ public class SubjectDetails {
 				subject = subjectFacade.find(subjectId);
 			}
 		}
+		if (subject == null) {
+			subject = new Subject();
+		}
 		return subject;
 	}
-
+	
 	public void setSubject(Subject subject) {
 		this.subject = subject;
 	}
-
+	
 	public int getStudentId() {
 		return studentId;
 	}
-
+	
 	public void setStudentId(int studentId) {
 		this.studentId = studentId;
 	}
-
+	
 	public int getTeacherId() {
-		return this.subject.getTeacherId().getTeacherId();
+		if (getSubject().getTeacherId() == null) {
+			getSubject().setTeacherId(new Teacher());
+			getSubject().getTeacherId().setTeacherId(0);
+		}
+		return getSubject().getTeacherId().getTeacherId();
 	}
-
+	
 	public void setTeacherId(int teacherId) {
 		Teacher newTeacher = teacherFacade.find(teacherId);
-		this.subject.setTeacherId(newTeacher);
+		if (newTeacher == null) {
+			newTeacher = new Teacher();
+		}
+		getSubject().setTeacherId(newTeacher);
 	}
-
+	
+	public String add() {
+		subjectFacade.create(subject);
+		return "subjectDetails";
+	}
+	
 	public String edit() {
 		try {
 			subjectFacade.edit(getSubject());
 		} catch (Exception e) {
 		}
-
+		
 		return "subjectList";
 	}
-
+	
 	public String delete() {
 		try {
 			subjectFacade.remove(getSubject());
 		} catch (Exception e) {
 		}
-
+		
 		return "subjectList";
 	}
 	
