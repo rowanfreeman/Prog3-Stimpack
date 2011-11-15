@@ -13,7 +13,7 @@ import javax.faces.bean.SessionScoped;
 /**
  * Handles authentication checking and delegation of login testing to the
  * entire application, as well as providing a central point of contact to
- * retrieve the details of the currently logged-in user.
+ * retrieve the details and type of the currently logged-in user.
  */
 @ManagedBean
 @SessionScoped

@@ -42,6 +42,11 @@ public class SubjectManager {
         }
     }
     
+		/*
+		 * Returns a list of the subjects in the current scope of the page.
+		 * Depending on where the page was called from, this might list the subjects
+		 * related to a certain Teacher or Student.
+		 */
     public List<Subject> getSubjectsInScope() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         int studentId = 0, teacherId = 0;

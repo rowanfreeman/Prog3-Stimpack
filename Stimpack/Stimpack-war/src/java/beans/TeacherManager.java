@@ -85,8 +85,6 @@ public class TeacherManager {
 	}
 
 	public void delete(int teacherId) {
-		// broken
-		//studentFacade.remove(studentFacade.findByStudentId(studentId));
 		this.deleted = true;
 	}
 }
