@@ -1,0 +1,35 @@
+Statement of Work
+
+Rowan Freeman:
+
+- Source control setup
+- Database schema definition
+- Netbeans project setup
+- Entity bean + session facade generation
+- Application design, view framework decisions
+- JSF Framework research + expertise
+- HTML/CSS site design
+- Login system
+- Student/Teacher/Subject Add pages
+- Student Edit page
+
+
+Joshua McLean:
+
+- Difficult problem expertise
+- Source control administration, merge conflict resolution
+- Student/Teacher/Subject List pages
+- Subject/Teacher Edit pages
+- Student Enrol/Unenrol functionality
+
+
+
+Wow factor:
+
+The JavaServer Faces + Facelets framework was used to implement the View portions of the application.
+
+The JSF framework allowed us to use a template engine to separate the "container" elements of the website design from the content.
+
+It also allowed us to easily bind forms to objects using controls such as <h:form>..<h:inputText>, reducing the amount of code required to handle form submission.
+
+Other elements such as <c:forEach> allowed for easy iteration over collections, and <c:commandButton> / <c:commandLink> allowed for easier organisation of actions such as add(), edit(), delete().
