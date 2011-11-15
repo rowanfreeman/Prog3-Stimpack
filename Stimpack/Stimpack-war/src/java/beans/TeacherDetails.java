@@ -14,8 +14,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 /**
- *
- * @author Josh
+ * Provides form handling for Teacher-related forms.
  */
 @ManagedBean
 @RequestScoped

@@ -12,8 +12,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
 /**
- *
- * @author Josh
+ * Provides form handling for Subject-related forms.
  */
 @ManagedBean
 public class SubjectManager {

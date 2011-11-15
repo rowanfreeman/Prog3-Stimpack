@@ -16,8 +16,7 @@ import javax.faces.bean.RequestScoped;
 import pojo.md5;
 
 /**
- *
- * @author Rowan
+ * Checks logins and reports errors.
  */
 @ManagedBean
 @RequestScoped
