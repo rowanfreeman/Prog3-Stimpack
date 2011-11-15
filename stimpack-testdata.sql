@@ -27,7 +27,12 @@ VALUES
 ( 1, '30081056', '5f4dcc3b5aa765d61d8327deb882cf99', 'Joshua', 'McLean', '098484309', 'joshua.mclean@students.uni.edu', 24 ),
 ( 2, '30054983', '5f4dcc3b5aa765d61d8327deb882cf99', 'Typical', 'Student', '33985930', 'typical.student@students.uni.edu', 20 ),
 ( 3, '30020973', '5f4dcc3b5aa765d61d8327deb882cf99', 'Dave', 'Hughes', '+64 298734343', 'dave.hughes@students.uni.edu', 32 ),
-( 4, '30093305', '5f4dcc3b5aa765d61d8327deb882cf99', 'Patricia', 'Hendrix', '738347832', 'patricia.hendrix@students.uni.edu', 28 );
+( 4, '30093305', '5f4dcc3b5aa765d61d8327deb882cf99', 'Patricia', 'Hendrix', '738347832', 'patricia.hendrix@students.uni.edu', 28 ),
+( 5, '30882937', '5f4dcc3b5aa765d61d8327deb882cf99', 'Rowan', 'Freeman', '0988938499', 'rowan.freeman@students.uni.edu', 22 ),
+( 6, '30082988', '5f4dcc3b5aa765d61d8327deb882cf99', 'Gordon', 'Freeman', '539948944', 'gordon.freeman@students.uni.edu', 35 ),
+( 7, '30082211', '5f4dcc3b5aa765d61d8327deb882cf99', 'Soap', 'McTavish', '53998773', 'soap.mctavish@students.uni.edu', 41 ),
+( 8, '30079822', '5f4dcc3b5aa765d61d8327deb882cf99', 'Andrew', 'Kilmartin', '0404099837', 'andrew.kilmartin@students.uni.edu', 25 ),
+( 9, '30011011', '5f4dcc3b5aa765d61d8327deb882cf99', 'Amar', 'Kaur', '+62 9983222', 'amar.kaur@students.uni.edu', 30 );
 
 INSERT INTO student_subject
 ( class_id, student_id )
@@ -35,4 +40,10 @@ VALUES
 ( 1, 1 ),
 ( 1, 2 ),
 ( 1, 4 ),
-( 2, 1 );
+( 1, 5 ),
+( 1, 6 ),
+( 1, 7 ),
+( 1, 8 ),
+( 1, 9 ),
+( 2, 1 ),
+( 5, 1 );
