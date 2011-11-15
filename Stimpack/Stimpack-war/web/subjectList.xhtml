@@ -39,25 +39,27 @@
 							<td>#{subject.schedule}</td>
 							<td>#{subject.capacity}</td>
 							<td><!-- action links -->
-								<c:if test="#{userManager.loggedIn()}">
-									<form action="EnrolServlet" method="POST">
-										<input type="hidden" name="subject_id" value="#{subject.classId}" />
-										<c:if test="#{userManager.type == 'Student'}">
-											<input type="hidden" name="student_id" value="#{userManager.getStudent().studentId}" />
-											<c:choose>
-												<c:when test="#{subject.studentCollection.contains(userManager.getStudent())}">
-													<input type="submit" name="action" value="unenrol" />
-												</c:when>
-												<c:otherwise>
-													<input type="submit" name="action" value="enrol" />
-												</c:otherwise>
-											</c:choose>
-										</c:if>
-										<c:if test="#{userManager.type == 'Administrator'}">
-											<input type="submit" name="action" value="delete" />
-										</c:if>
-									</form>
-								</c:if>
+								<h:form rendered="#{userManager.loggedIn()}">
+									<h:commandButton value="enrol"
+																	 rendered="#{userManager.isStudent() and not subject.studentCollection.contains(userManager.getStudent())}"
+																	 action="#{subjectDetails.enrol()}">
+										<f:param name="edit" value="#{subject.classId}" />
+										<f:param name="student" value="#{userManager.getStudent().studentId}" />
+									</h:commandButton>
+
+									<h:commandButton value="unenrol"
+																	 rendered="#{userManager.isStudent() and subject.studentCollection.contains(userManager.getStudent())}"
+																	 action="#{subjectDetails.unenrol()}">
+										<f:param name="edit" value="#{subject.classId}" />
+										<f:param name="student" value="#{userManager.getStudent().studentId}" />
+									</h:commandButton>
+
+									<h:commandButton value="Delete"
+																	 action="#{subjectDetails.delete()}"
+																	 rendered="#{userManager.isAdministrator()}">
+										<f:param name="delete" value="#{subject.classId}" />
+									</h:commandButton>
+								</h:form>
 							</td>
 						</tr>
 					</c:forEach>

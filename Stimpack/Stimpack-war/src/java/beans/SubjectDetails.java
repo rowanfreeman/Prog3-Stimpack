@@ -4,6 +4,8 @@
  */
 package beans;
 
+import ejb.Student;
+import ejb.StudentFacadeLocal;
 import ejb.Subject;
 import ejb.SubjectFacadeLocal;
 import ejb.Teacher;
@@ -21,15 +23,22 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @RequestScoped
 public class SubjectDetails {
-
+	
+	@EJB
+	private StudentFacadeLocal studentFacade;
 	@EJB
 	private SubjectFacadeLocal subjectFacade;
 	@EJB
 	private TeacherFacadeLocal teacherFacade;
+	
 	@ManagedProperty(value = "#{param.view}")
 	private int view;
 	@ManagedProperty(value = "#{param.edit}")
 	private int edit;
+	@ManagedProperty(value = "#{param.delete}")
+	private int delete;
+	@ManagedProperty(value = "#{param.student}")
+	private int studentId;
 	
 	private Subject subject;
 
@@ -53,12 +62,23 @@ public class SubjectDetails {
 		this.view = view;
 	}
 
+	public int getDelete() {
+		return delete;
+	}
+
+	public void setDelete(int delete) {
+		this.delete = delete;
+	}
+
 	public int getSubjectId() {
 		if (view > 0) {
 			return view;
 		}
 		if (edit > 0) {
 			return edit;
+		}
+		if (delete > 0) {
+			return delete;
 		}
 		if (FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("subjectId") != null) {
 			return Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("subjectId").toString());
@@ -80,6 +100,14 @@ public class SubjectDetails {
 		this.subject = subject;
 	}
 
+	public int getStudentId() {
+		return studentId;
+	}
+
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
+	}
+
 	public int getTeacherId() {
 		return this.subject.getTeacherId().getTeacherId();
 	}
@@ -88,13 +116,40 @@ public class SubjectDetails {
 		Teacher newTeacher = teacherFacade.find(teacherId);
 		this.subject.setTeacherId(newTeacher);
 	}
-	
+
 	public String edit() {
 		try {
-			subjectFacade.edit(subject);
-			return "subjectList";
+			subjectFacade.edit(getSubject());
 		} catch (Exception e) {
-			return "subjectList"; // i'm sure there's something more appropriate to do here
 		}
+
+		return "subjectList";
+	}
+
+	public String delete() {
+		try {
+			subjectFacade.remove(getSubject());
+		} catch (Exception e) {
+		}
+
+		return "subjectList";
+	}
+	
+	public String enrol() {
+		Student student = studentFacade.find(studentId);
+		Subject s = getSubject();
+		s.enrolStudent(student);
+		subjectFacade.edit(s);
+		
+		return "subjectList";
+	}
+	
+	public String unenrol() {
+		Student student = studentFacade.find(studentId);
+		Subject s = getSubject();
+		s.unenrolStudent(student);
+		subjectFacade.edit(s);
+		
+		return "subjectList";
 	}
 }
